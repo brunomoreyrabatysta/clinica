@@ -13,7 +13,7 @@ public class ListarUnidadesFederativasPorNomeEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
-        app.MapGet("/{nome}", HandleAsync)
+        app.MapGet("/nome/{nome}", HandleAsync)
             .WithName("Unidade Federativa: Listar toda(s) unidade(s) federativa(s) por nome")
             .WithSummary("Listar toda(s) unidade(s) federativa(s) por nome")
             .WithDescription("Listar toda(s) unidade(s) federativa(s) por nome")
