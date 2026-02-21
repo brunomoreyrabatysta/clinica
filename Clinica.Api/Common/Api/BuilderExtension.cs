@@ -66,6 +66,9 @@ public static class BuilderExtension
     {
         builder.Services.AddTransient<ISituacaoCursoHandler, SituacaoCursoHandler>();
         builder.Services.AddTransient<ITipoCursoHandler, TipoCursoHandler>();
-        builder.Services.AddTransient<ICursoHandler, CursoHandler>();        
+        builder.Services.AddTransient<ICursoHandler, CursoHandler>();
+        builder.Services.AddTransient<IUnidadeFederativaHandler, UnidadeFederativaHandler>();
+        builder.Services.AddTransient<ICidadeHandler, CidadeHandler>();
+        builder.Services.AddTransient<IPacienteHandler, PacienteHandler>();
     }
 }

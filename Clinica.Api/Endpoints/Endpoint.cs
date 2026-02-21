@@ -4,6 +4,9 @@ using Clinica.Api.Endpoints.Cursos;
 using Clinica.Api.Models;
 using Clinica.Api.Endpoints.Identity;
 using Clinica.Api.Endpoints.SituacoesCurso;
+using Clinica.Api.Endpoints.UnidadesFederativas;
+using Clinica.Api.Endpoints.Cidades;
+using Clinica.Api.Endpoints.Pacientes;
 
 namespace Clinica.Api.Endpoints
 {
@@ -47,6 +50,41 @@ namespace Clinica.Api.Endpoints
                 .MapEndpoint<ExcluirCursoEndpoint>()
                 .MapEndpoint<ListarPorCodigoCursoEndpoint>()
                 .MapEndpoint<ListarTodosCursoEndpoint>();
+                        
+            endPoints
+                .MapGroup("v1/unidadesfederativas")
+                .WithTags("UnidadesFederativas")
+                .RequireAuthorization()
+                .MapEndpoint<CriarUnidadeFederativaEndpoint>()
+                .MapEndpoint<AlterarUnidadeFederativaEndpoint>()
+                .MapEndpoint<ExcluirUnidadeFederativaEndpoint>()
+                .MapEndpoint<ListarUnidadeFederativaPorIdEndpoint>()
+                .MapEndpoint<ListarUnidadesFederativasPorNomeEndpoint>()
+                .MapEndpoint<ListarUnidadesFederativasPorSiglaEndpoint>()
+                .MapEndpoint<ListarTodasUnidadesFederativasEndpoint>();
+
+            endPoints
+                .MapGroup("v1/cidades")
+                .WithTags("Cidades")
+                .RequireAuthorization()
+                .MapEndpoint<CriarCidadeEndpoint>()
+                .MapEndpoint<AlterarCidadeEndpoint>()
+                .MapEndpoint<ExcluirCidadeEndpoint>()
+                .MapEndpoint<ListarCidadePorIdEndpoint>()
+                .MapEndpoint<ListarCidadesPorNomeEndpoint>()
+                .MapEndpoint<ListarCidadesPorUnidadeFederativaEndpoint>()
+                .MapEndpoint<ListarTodasCidadesEndpoint>();
+
+            endPoints
+                .MapGroup("v1/pacientes")
+                .WithTags("Pacientes")
+                .RequireAuthorization()
+                .MapEndpoint<CriarPacienteEndpoint>()
+                .MapEndpoint<AlterarPacienteEndpoint>()
+                .MapEndpoint<ExcluirPacienteEndpoint>()
+                .MapEndpoint<ListarPacientePorIdEndpoint>()
+                .MapEndpoint<ListarPacientesPorNomeEndpoint>()                
+                .MapEndpoint<ListarTodosPacientesEndpoint>();
 
             endPoints
                 .MapGroup("v1/identity")

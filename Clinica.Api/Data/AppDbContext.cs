@@ -23,6 +23,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public DbSet<Curso> Cursos { get; set; } = null!;
     public DbSet<TipoCurso> TiposCurso { get; set; } = null!;
     public DbSet<SituacaoCurso> SituacoesCurso { get; set; } = null!;
+    public DbSet<Cidade> Cidades { get; set; } = null!;
+    public DbSet<UnidadeFederativa> UnidadesFederativa { get; set; } = null!;
+    public DbSet<Paciente> Pacientes { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
