@@ -1,0 +1,46 @@
+﻿@page "/tipocurso/editar/{id}"
+@inherits EditarTipoCursoPage
+
+<MudText Typo="Typo.h3">Editar tipo de curso</MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular 
+            Indeterminate="true" 
+            Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Título"
+                          HelperText="Campo obrigatório"
+                          @bind-Value="InputModel.Titulo"
+                          For="@(() => InputModel.Titulo)" />
+
+            <MudTextField Label="Descrição"
+                          HelperText="Campo obrigatório"
+                          @bind-Value="InputModel.Descricao"
+                          For="@(() => InputModel.Descricao)" />
+
+
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}

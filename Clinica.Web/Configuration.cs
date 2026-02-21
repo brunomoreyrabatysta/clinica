@@ -1,0 +1,42 @@
+﻿using MudBlazor;
+using MudBlazor.Utilities;
+
+namespace Clinica.Web
+{
+    public static class Configuration
+    {
+        public const string HttpClientName = "IntegraVidaMulheres";
+        public static string BackEndUrl { get; set; } = "https://localhost:7020";
+
+        public static MudTheme Theme = new ()
+        {
+            Typography = new Typography()
+        {
+            Default = new DefaultTypography()
+            {
+                FontFamily = new[] { "Raleway", "sans-serif" }
+            }
+            },
+            PaletteLight = new PaletteLight
+            {
+                Primary = new MudColor("#1EFA2D"),                
+                Secondary = Colors.LightGreen.Darken3,
+                Background = Colors.Gray.Lighten4,
+                AppbarBackground = "#1EFA2D",
+                AppbarText = Colors.Shades.Black,
+                TextPrimary = Colors.Shades.Black,
+                PrimaryContrastText = Colors.Shades.Black,
+                DrawerText = Colors.Shades.Black,
+                DrawerBackground = Colors.LightGreen.Lighten4,
+            },
+            PaletteDark = new PaletteDark
+            {
+                Primary = Colors.LightGreen.Accent3,
+                Secondary = Colors.LightGreen.Darken3,
+                AppbarBackground = Colors.LightGreen.Accent3,
+                AppbarText = Colors.Shades.Black,
+                PrimaryContrastText = new MudColor("#000000"),
+            }
+        };
+    }
+}

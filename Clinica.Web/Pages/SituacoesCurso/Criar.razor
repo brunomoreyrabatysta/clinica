@@ -1,0 +1,25 @@
+﻿@page "/situacaocurso/adicionar"
+@inherits CriarSituacaoCursoPage
+
+<MudText Typo="Typo.h3">Cadastrar nova situação de curso</MudText>
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+
+        <MudTextField Label="Título"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Titulo"
+                      For="@(() => InputModel.Titulo)" />
+
+        <MudTextField Label="Descrição"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Descricao"
+                      For="@(() => InputModel.Descricao)" />
+
+
+        <MudButton ButtonType="ButtonType.Submit"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Class="mt-4">Salvar</MudButton>
+    </EditForm>
+</MudPaper>

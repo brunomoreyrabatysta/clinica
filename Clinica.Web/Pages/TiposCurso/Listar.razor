@@ -1,0 +1,54 @@
+﻿@page "/tipocurso"
+@inherits ListarTipoCursoPage
+
+<MudText Typo="Typo.h3">Tipos de curso</MudText>
+
+<div class="d-flex justify-end">
+    <MudButton 
+        Variant="Variant.Filled" 
+        Color="Color.Primary" 
+        StartIcon="@Icons.Material.TwoTone.Add"
+        Href="/tipocurso/adicionar">
+        NOVO TIPO DE CURSO
+    </MudButton>
+</div>
+
+<MudDataGrid 
+    class="mt-4"
+    Items="@TiposCurso"
+    Filterable="true"
+    QuickFilter="Filter"
+    Hideable="true">
+    <ToolBarContent>        
+        <MudTextField 
+            @bind-Value="SearchTerm"
+            Placeholder="Filtrar..." 
+            Adornment="Adornment.Start" 
+            AdornmentIcon="@Icons.Material.Filled.Search"
+            Immediate="true"
+            IconSize="Size.Medium" 
+            Class="mt-0" />
+        </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="#" />
+        <PropertyColumn Property="x => x.Titulo" Title="Título" />
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton
+                        Icon="@Icons.Material.Filled.Edit"
+                        Href="@($"/tipocurso/editar/{context.Item.Id}")"
+                        Color="Color.Primary">
+                    </MudIconButton>
+
+                    <MudIconButton
+                        Icon="@Icons.Material.Filled.Delete"
+                        Color="Color.Error"
+                        arial-label="Excluir"
+                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Titulo)">
+                    </MudIconButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
