@@ -1,4 +1,4 @@
-﻿namespace Clinica.Core.Requests.Cidade;
+﻿namespace Clinica.Core.Requests.Cidades;
 
 public class ListarCidadePorIdRequest : BaseRequest
 {

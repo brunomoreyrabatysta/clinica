@@ -1,0 +1,49 @@
+﻿@page "/cidade"
+@inherits ListarCidadePage
+
+<MudText Typo="Typo.h3">Cidades</MudText>
+
+<div class="d-flex justify-end">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.Material.TwoTone.Add"
+               Href="/cidade/adicionar">
+        NOVA CIDADE
+    </MudButton>
+</div>
+
+<MudDataGrid class="mt-4"
+             Items="@Cidades"
+             Filterable="true"
+             QuickFilter="Filter"
+             Hideable="true">
+    <ToolBarContent>
+        <MudTextField @bind-Value="SearchTerm"
+                      Placeholder="Filtrar..."
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true"
+                      IconSize="Size.Medium"
+                      Class="mt-0" />
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="#" />
+        <PropertyColumn Property="x => x.Nome" Title="Nome" />
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                                   Href="@($"/cidade/editar/{context.Item.Id}")"
+                                   Color="Color.Primary">
+                    </MudIconButton>
+
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                   Color="Color.Error"
+                                   arial-label="Excluir"
+                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Nome)">
+                    </MudIconButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>

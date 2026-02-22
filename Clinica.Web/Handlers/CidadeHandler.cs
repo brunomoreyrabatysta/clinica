@@ -1,6 +1,6 @@
 ﻿using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Cidade;
+using Clinica.Core.Requests.Cidades;
 using Clinica.Core.Responses;
 using System.Net.Http.Json;
 

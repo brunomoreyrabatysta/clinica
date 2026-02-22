@@ -1,5 +1,5 @@
 ﻿using Clinica.Core.Models;
-using Clinica.Core.Requests.Cidade;
+using Clinica.Core.Requests.Cidades;
 using Clinica.Core.Responses;
 
 namespace Clinica.Core.Handlers;

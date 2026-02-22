@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Clinica.Core.Requests.Cidade;
+namespace Clinica.Core.Requests.Cidades;
 
 public class AlterarCidadeRequest : BaseRequest
 {
@@ -11,5 +11,5 @@ public class AlterarCidadeRequest : BaseRequest
     public string Nome { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "A unidade federativa não foi preenchida!")]
-    public int UnidadeFederativaId { get; set; }
+    public long UnidadeFederativaId { get; set; }
 }

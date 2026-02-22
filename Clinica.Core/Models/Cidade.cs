@@ -4,6 +4,6 @@ public class Cidade
 {
     public long Id { get; set; }
     public string Nome { get; set; } = string.Empty;
-    public int UnidadeFederativaId { get; set; }
+    public long UnidadeFederativaId { get; set; }
     public UnidadeFederativa UnidadeFederativa { get; set; } = null!;
 }

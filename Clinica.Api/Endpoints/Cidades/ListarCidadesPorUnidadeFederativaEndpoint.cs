@@ -2,7 +2,7 @@
 using Clinica.Core;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Cidade;
+using Clinica.Core.Requests.Cidades;
 using Clinica.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -24,7 +24,7 @@ public class ListarCidadesPorUnidadeFederativaEndpoint : IEndpoint
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
         ICidadeHandler handler,
-        [FromQuery] int unidadeFederativaId,
+        [FromQuery] long unidadeFederativaId,
         [FromQuery] int numeroPagina = Configuracao.PadraoNumeroPagina,
         [FromQuery] int tamanhoPagina = Configuracao.PadraoTamanhoPagina)
     {
