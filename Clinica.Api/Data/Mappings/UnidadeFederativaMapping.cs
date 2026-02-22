@@ -8,7 +8,7 @@ public class UnidadeFederativaMapping : IEntityTypeConfiguration<UnidadeFederati
 {
     public void Configure(EntityTypeBuilder<UnidadeFederativa> builder)
     {
-        builder.ToTable("UnidadeFedrativa");
+        builder.ToTable("UnidadeFederativa");
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Nome)
@@ -19,5 +19,11 @@ public class UnidadeFederativaMapping : IEntityTypeConfiguration<UnidadeFederati
             .IsRequired()
             .HasColumnType("VARCHAR")
             .HasMaxLength(2);
+        
+        builder.HasMany(uf => uf.Cidades)
+            .WithOne(c => c.UnidadeFederativa)
+            .HasForeignKey(c => c.UnidadeFederativaId)
+            .HasPrincipalKey(uf => uf.Id)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

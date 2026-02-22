@@ -1,4 +1,5 @@
 ﻿using Clinica.Core.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,5 +19,15 @@ public class CidadeMapping : IEntityTypeConfiguration<Cidade>
         builder.Property(x => x.UnidadeFederativaId)
             .IsRequired()
             .HasColumnType("INT");
+        
+        builder.HasMany(c => c.Pacientes)
+            .WithOne(p => p.Cidade)
+            .HasForeignKey(p => p.CidadeId)
+            .HasPrincipalKey(c => c.Id)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        builder.HasOne(c => c.UnidadeFederativa)
+                        .WithMany(uf => uf.Cidades)
+                        .HasForeignKey(c => c.UnidadeFederativaId);        
     }
 }
