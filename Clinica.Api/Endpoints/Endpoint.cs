@@ -1,9 +1,6 @@
 ﻿using Clinica.Api.Common.Api;
-using Clinica.Api.Endpoints.TiposCurso;
-using Clinica.Api.Endpoints.Cursos;
 using Clinica.Api.Models;
 using Clinica.Api.Endpoints.Identity;
-using Clinica.Api.Endpoints.SituacoesCurso;
 using Clinica.Api.Endpoints.UnidadesFederativas;
 using Clinica.Api.Endpoints.Cidades;
 using Clinica.Api.Endpoints.Pacientes;
@@ -21,36 +18,6 @@ namespace Clinica.Api.Endpoints
                 .WithTags("Checagem de saúde")
                 .MapGet("/", () => new { mensagem = "OK" });
 
-            endPoints
-                .MapGroup("v1/tiposcurso")
-                .WithTags("TiposCurso")
-                .RequireAuthorization()
-                .MapEndpoint<CriarTipoCursoEndpoint>()
-                .MapEndpoint<AlterarTipoCursoEndpoint>()
-                .MapEndpoint<ExcluirTipoCursoEndpoint>()
-                .MapEndpoint<ListarPorIdTipoCursoEndpoint>()
-                .MapEndpoint<ListarTodosTipoCursoEndpoint>();
-
-            endPoints
-                .MapGroup("v1/situacoescurso")
-                .WithTags("SituacoesCurso")
-                .RequireAuthorization()
-                .MapEndpoint<CriarSituacaoCursoEndpoint>()
-                .MapEndpoint<AlterarSituacaoCursoEndpoint>()
-                .MapEndpoint<ExcluirSituacaoCursoEndpoint>()
-                .MapEndpoint<ListarPorIdSituacaoCursoEndpoint>()
-                .MapEndpoint<ListarTodasSituacaoCursoEndpoint>();
-
-            endPoints
-                .MapGroup("v1/cursos")
-                .WithTags("Cursos")
-                .RequireAuthorization()
-                .MapEndpoint<CriarCursoEndpoint>()
-                .MapEndpoint<AlterarCursoEndpoint>()
-                .MapEndpoint<ExcluirCursoEndpoint>()
-                .MapEndpoint<ListarPorCodigoCursoEndpoint>()
-                .MapEndpoint<ListarTodosCursoEndpoint>();
-                        
             endPoints
                 .MapGroup("v1/unidadesfederativas")
                 .WithTags("UnidadesFederativas")
