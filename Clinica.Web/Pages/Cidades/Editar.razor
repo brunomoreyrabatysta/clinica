@@ -1,0 +1,52 @@
+﻿@page "/cidade/editar/{id}"
+@inherits EditarCidadePage
+
+<MudText Typo="Typo.h3">Editar cidade</MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular Indeterminate="true"
+                             Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Nome"
+                          HelperText="Campo obrigatório"
+                          @bind-Value="InputModel.Nome"
+                          For="@(() => InputModel.Nome)" />
+
+            <MudSelect T="long"
+                       Label="Unidade federativa"
+                       @bind-Value="InputModel.UnidadeFederativaId"
+                       Required="true"
+                       For="@(() => InputModel.UnidadeFederativaId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var uniFed in UnidadesFederativas)
+                {
+                    <MudSelectItem T="long" Value="@uniFed.Id">@uniFed.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}
