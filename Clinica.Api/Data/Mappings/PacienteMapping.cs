@@ -19,27 +19,27 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
             .IsRequired()
             .HasColumnType("VARCHAR")
             .HasMaxLength(14);
-        builder.Property(x => x.RG)            
+        builder.Property(x => x.RG)
             .HasColumnType("VARCHAR")
             .HasMaxLength(20);
-        builder.Property(x => x.DataEmisssaoRG)            
+        builder.Property(x => x.DataEmisssaoRG)
             .HasColumnType("DATE");
-        builder.Property(x => x.UFEmissaoRG)            
+        builder.Property(x => x.UFEmissaoRG)
             .HasColumnType("VARCHAR")
             .HasMaxLength(2);
-        builder.Property(x => x.Endereco)            
+        builder.Property(x => x.Endereco)
             .HasColumnType("VARCHAR")
             .HasMaxLength(50);
-        builder.Property(x => x.Complemento)            
+        builder.Property(x => x.Complemento)
             .HasColumnType("VARCHAR")
             .HasMaxLength(50);
-        builder.Property(x => x.Numero)            
+        builder.Property(x => x.Numero)
             .HasColumnType("VARCHAR")
             .HasMaxLength(15);
-        builder.Property(x => x.Bairro)            
+        builder.Property(x => x.Bairro)
             .HasColumnType("VARCHAR")
             .HasMaxLength(50);
-        builder.Property(x => x.Cidade)            
+        builder.Property(x => x.CidadeId)
             .HasColumnType("INT");
         builder.Property(x => x.CEP)
             .HasColumnType("VARCHAR")
@@ -62,5 +62,9 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
         builder.Property(x => x.Email)
             .HasColumnType("VARCHAR")
             .HasMaxLength(150);
+        
+        builder.HasOne(p => p.Cidade)
+                .WithMany(c => c.Pacientes)
+                .HasForeignKey(p => p.CidadeId);
     }
 }

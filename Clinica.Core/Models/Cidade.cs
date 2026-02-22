@@ -6,4 +6,6 @@ public class Cidade
     public string Nome { get; set; } = string.Empty;
     public long UnidadeFederativaId { get; set; }
     public UnidadeFederativa UnidadeFederativa { get; set; } = null!;
+
+    public ICollection<Paciente> Pacientes { get; } = new List<Paciente>();
 }

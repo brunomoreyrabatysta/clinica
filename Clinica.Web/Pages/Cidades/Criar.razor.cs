@@ -1,7 +1,6 @@
 ﻿using Clinica.Core.Handlers;
 using Clinica.Core.Models;
 using Clinica.Core.Requests.Cidades;
-using Clinica.Core.Requests.TiposCurso;
 using Clinica.Core.Requests.UnidadesFederativas;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;

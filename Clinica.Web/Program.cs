@@ -30,9 +30,9 @@ builder.Services.AddHttpClient(Configuration.HttpClientName, opt =>
     }).AddHttpMessageHandler<CookieHandler>();
 
 builder.Services.AddTransient<IAccountHandler, AccountHandler>();
-builder.Services.AddTransient<ISituacaoCursoHandler, SituacaoCursoHandler>();
-builder.Services.AddTransient<ITipoCursoHandler, TipoCursoHandler>();
-builder.Services.AddTransient<ICursoHandler, CursoHandler>();
+builder.Services.AddTransient<IUnidadeFederativaHandler, UnidadeFederativaHandler>();
+builder.Services.AddTransient<ICidadeHandler, CidadeHandler>();
+builder.Services.AddTransient<IPacienteHandler, PacienteHandler>();
 
 builder.Services.AddLocalization();
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
