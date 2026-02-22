@@ -1,4 +1,4 @@
-﻿namespace Clinica.Core.Requests.Paciente;
+﻿namespace Clinica.Core.Requests.Pacientes;
 
 public class ExcluirPacienteRequest : BaseRequest
 {

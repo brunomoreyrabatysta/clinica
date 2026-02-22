@@ -1,7 +1,7 @@
 ﻿using Clinica.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Clinica.Core.Requests.Paciente;
+namespace Clinica.Core.Requests.Pacientes;
 
 public class CriarPacienteRequest : BaseRequest
 {    
@@ -16,14 +16,14 @@ public class CriarPacienteRequest : BaseRequest
     public string? Complemento { get; set; }
     public string? Numero { get; set; }
     public string? Bairro { get; set; }
-    public int? CidadeId { get; set; }
+    public long? CidadeId { get; set; }
     public string? CEP { get; set; }
     public string? Naturalidade { get; set; }
     public string? Nacionalidade { get; set; }
     public ESexo? Sexo { get; set; }
 
     [Required(ErrorMessage = "A data de nascimento não foi preenchida!")]
-    public DateTime DataNascimento { get; set; }
+    public DateTime? DataNascimento { get; set; }
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
 }

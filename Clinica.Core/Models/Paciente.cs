@@ -15,12 +15,12 @@ public class Paciente
     public string? Numero { get; set; }
     public string? Bairro { get; set; }
     public Cidade? Cidade { get; set; }
-    public int? CidadeId { get; set; }
+    public long? CidadeId { get; set; }
     public string? CEP { get; set; }
     public string? Naturalidade { get; set; }
     public string? Nacionalidade { get; set; }
     public ESexo? Sexo { get; set; }
-    public DateTime DataNascimento { get; set; }
+    public DateTime? DataNascimento { get; set; }
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
 }

@@ -1,28 +1,27 @@
 ﻿using Clinica.Core.Handlers;
 using Clinica.Core.Models;
 using Clinica.Core.Requests.Cidades;
-using Clinica.Core.Requests.TiposCurso;
-using Clinica.Core.Requests.UnidadesFederativas;
+using Clinica.Core.Requests.Pacientes;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace Clinica.Web.Pages.Cidades;
+namespace Clinica.Web.Pages.Pacientes;
 
-public partial class CriarCidadePage : ComponentBase
+public partial class CriarPacientePage : ComponentBase
 {
     #region Properties
     public bool IsBusy { get; set; } = false;
-    public CriarCidadeRequest InputModel { get; set; } = new();
+    public CriarPacienteRequest InputModel { get; set; } = new();
 
-    public List<UnidadeFederativa> UnidadesFederativas { get; set; } = [];
+    public List<Cidade> Cidades { get; set; } = [];
     #endregion
 
     #region Services
     [Inject]
-    public ICidadeHandler Handler { get; set; } = null!;
+    public IPacienteHandler Handler { get; set; } = null!;
 
     [Inject]
-    public IUnidadeFederativaHandler UnidadeFederativaHandler { get; set; } = null!;
+    public ICidadeHandler CidadeHandler { get; set; } = null!;
 
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;
@@ -37,7 +36,7 @@ public partial class CriarCidadePage : ComponentBase
         IsBusy = true;
         try
         {
-            await CarregarUnidadesFederativasAsync();            
+            await CarregarCidadesAsync();
         }
         finally
         {
@@ -55,11 +54,11 @@ public partial class CriarCidadePage : ComponentBase
             var result = await Handler.CriarAsync(InputModel);
             if (result.Sucesso)
             {
-                Snackbar.Add(result.Mensagem ?? "Cidade criada com sucesso.", Severity.Success);
-                NavigationManager.NavigateTo("/cidade");
+                Snackbar.Add(result.Mensagem ?? "Paciente criado com sucesso.", Severity.Success);
+                NavigationManager.NavigateTo("/paciente");
             }
             else
-                Snackbar.Add(result.Mensagem ?? "Falha ao criar a cidade.", Severity.Error);
+                Snackbar.Add(result.Mensagem ?? "Falha ao criar o paciente.", Severity.Error);
         }
         catch (Exception ex)
         {
@@ -73,19 +72,19 @@ public partial class CriarCidadePage : ComponentBase
     #endregion
 
     #region Private Methods
-    private async Task CarregarUnidadesFederativasAsync()
+    private async Task CarregarCidadesAsync()
     {
         try
         {
-            var request = new ListarTodasUnidadesFederativasRequest();
-            var result = await UnidadeFederativaHandler.ListarTodasUnidadesFederativasAsync(request);
+            var request = new ListarTodasCidadesRequest();
+            var result = await CidadeHandler.ListarTodasCidadesAsync(request);
             if (result.Sucesso)
             {
-                UnidadesFederativas = result.Dados ?? [];                
-                InputModel.UnidadeFederativaId = UnidadesFederativas.FirstOrDefault()?.Id ?? 0;
+                Cidades = result.Dados ?? [];                
+                InputModel.CidadeId = Cidades.FirstOrDefault()?.Id ?? 0;
             }
             else
-                Snackbar.Add(result.Mensagem ?? "Falha ao carregar as unidades federativas.", Severity.Error);
+                Snackbar.Add(result.Mensagem ?? "Falha ao carregar as cidades.", Severity.Error);
         }
         catch (Exception ex)
         {

@@ -1,0 +1,124 @@
+﻿@page "/paciente/editar/{id}"
+@inherits EditarPacientePage
+
+<MudText Typo="Typo.h3">Editar paciente</MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular Indeterminate="true"
+                             Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Nome"
+                          HelperText="Campo obrigatório"
+                          Required="true"
+                          @bind-Value="InputModel.Nome"
+                          For="@(() => InputModel.Nome)" />
+
+            <MudTextField Label="CPF"
+                          HelperText="Campo obrigatório"
+                          Required="true"
+                          @bind-Value="InputModel.CPF"
+                          For="@(() => InputModel.CPF)" />
+
+            <MudTextField Label="RG | CNI"
+                          @bind-Value="InputModel.RG"
+                          For="@(() => InputModel.RG)" />
+
+            <MudDatePicker @bind-Date="InputModel.DataEmisssaoRG"
+                           Label="Data de emissão do RG | CNI"
+                           Required="true"
+                           For="@(() => InputModel.DataEmisssaoRG)"
+                           HelperText="Selecione a data de emissão do RG | CNI" />
+
+            <MudTextField Label="UF de emissão do RG"
+                          @bind-Value="InputModel.UFEmissaoRG"
+                          For="@(() => InputModel.UFEmissaoRG)" />
+
+            <MudTextField Label="Endereço"
+                          @bind-Value="InputModel.Endereco"
+                          For="@(() => InputModel.Endereco)" />
+
+            <MudTextField Label="Complemento"
+                          @bind-Value="InputModel.Complemento"
+                          For="@(() => InputModel.Complemento)" />
+
+            <MudTextField Label="Número do endereço"
+                          @bind-Value="InputModel.Numero"
+                          For="@(() => InputModel.Numero)" />
+
+            <MudTextField Label="Bairro"
+                          @bind-Value="InputModel.Bairro"
+                          For="@(() => InputModel.Bairro)" />
+
+            <MudSelect T="long?"
+                       Label="Cidade"
+                       @bind-Value="InputModel.CidadeId"
+                       Required="true"
+                       For="@(() => InputModel.CidadeId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var cid in Cidades)
+                {
+                    <MudSelectItem T="long" Value="@cid.Id">@cid.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudTextField Label="CEP"
+                          @bind-Value="InputModel.CEP"
+                          For="@(() => InputModel.CEP)" />
+
+            <MudTextField Label="Nacionalidade"
+                          @bind-Value="InputModel.Nacionalidade"
+                          For="@(() => InputModel.Nacionalidade)" />
+
+            <MudTextField Label="Naturalidade"
+                          @bind-Value="InputModel.Naturalidade"
+                          For="@(() => InputModel.Naturalidade)" />
+
+            <MudSelect T="Clinica.Core.Enums.ESexo?"
+                       Label="Sexo"
+                       @bind-Value="InputModel.Sexo"
+                       Required="true"
+                       For="@(() => InputModel.Sexo)"
+                       AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem T="Clinica.Core.Enums.ESexo" Value="Clinica.Core.Enums.ESexo.Masculino">Masculino</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESexo" Value="Clinica.Core.Enums.ESexo.Femininno">Feminino</MudSelectItem>
+            </MudSelect>
+
+            <MudTextField Label="Número de telefone"
+                          @bind-Value="InputModel.NumeroTelefone"
+                          For="@(() => InputModel.NumeroTelefone)" />
+
+            <MudTextField Label="E-mail"
+                          @bind-Value="InputModel.Email"
+                          For="@(() => InputModel.Email)" />
+
+            <MudDatePicker @bind-Date="InputModel.DataNascimento"
+                           Label="Data de nascimento"
+                           Required="true"
+                           For="@(() => InputModel.DataNascimento)"
+                           HelperText="Selecione a data de nascimento" />
+
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}

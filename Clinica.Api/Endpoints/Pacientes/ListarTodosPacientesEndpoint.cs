@@ -2,7 +2,7 @@
 using Clinica.Core;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Paciente;
+using Clinica.Core.Requests.Pacientes;
 using Clinica.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
