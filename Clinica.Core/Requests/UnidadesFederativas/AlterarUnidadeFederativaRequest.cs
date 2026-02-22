@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Clinica.Core.Requests.UnidadeFederativa;
+namespace Clinica.Core.Requests.UnidadesFederativas;
 
 public class AlterarUnidadeFederativaRequest : BaseRequest
 {

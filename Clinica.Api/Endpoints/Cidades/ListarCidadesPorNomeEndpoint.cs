@@ -3,7 +3,7 @@ using Clinica.Core;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
 using Clinica.Core.Requests.Cidade;
-using Clinica.Core.Requests.UnidadeFederativa;
+using Clinica.Core.Requests.UnidadesFederativas;
 using Clinica.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

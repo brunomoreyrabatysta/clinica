@@ -1,4 +1,4 @@
-﻿namespace Clinica.Core.Requests.UnidadeFederativa;
+﻿namespace Clinica.Core.Requests.UnidadesFederativas;
 
 public class ListarTodasUnidadesFederativasRequest : PaginacaoRequest
 {

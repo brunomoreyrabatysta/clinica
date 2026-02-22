@@ -1,6 +1,6 @@
 ﻿using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.UnidadeFederativa;
+using Clinica.Core.Requests.UnidadesFederativas;
 using Clinica.Core.Responses;
 using System.Net.Http.Json;
 
