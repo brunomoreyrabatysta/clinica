@@ -1,30 +1,30 @@
 ﻿using Clinica.Api.Common.Api;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Pacientes;
+using Clinica.Core.Requests.Responsaveis;
 using Clinica.Core.Responses;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes;
+namespace Clinica.Api.Endpoints.Responsaveis;
 
-public class ExcluirPacienteEndpoint : IEndpoint
+public class ExcluirResponsavelEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapDelete("/{id}", HandleAsync)
-            .WithName("Pacientes: Excluir")
-            .WithSummary("Excluir um paciente")
-            .WithDescription("Excluir um paciente")
+            .WithName("Responsáveis: Excluir")
+            .WithSummary("Excluir um responsavel")
+            .WithDescription("Excluir um responsavel")
             .WithOrder(3)
-            .Produces<Response<Paciente?>>();
+            .Produces<Response<Responsavel?>>();
     }
 
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
-        IPacienteHandler handler,
+        IResponsavelHandler handler,
         int id)
     {
-        var request = new ExcluirPacienteRequest
+        var request = new ExcluirResponsavelRequest
         {
             Id = id
         };

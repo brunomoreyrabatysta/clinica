@@ -2,39 +2,39 @@
 using Clinica.Core;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Pacientes;
+using Clinica.Core.Requests.Responsaveis;
 using Clinica.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes;
+namespace Clinica.Api.Endpoints.Responsaveis;
 
-public class ListarPacientesPorNomeEndpoint : IEndpoint
+public class ListarResponsaveisPorNomeEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapGet("/{nome}", HandleAsync)
-            .WithName("Pacientes: Listar todo(s) paciente(s) por nome")
-            .WithSummary("Listar todo(s) paciente(s) por nome")
-            .WithDescription("Listar todo(s) paciente(s) por nome")
+            .WithName("Responsáveis: Listar todo(s) responsável(is) por nome")
+            .WithSummary("Listar todo(s) responsável(is) por nome")
+            .WithDescription("Listar todo(s) responsável(s) por nome")
             .WithOrder(6)
-            .Produces<PaginacaoResponse<List<Paciente>?>>();
+            .Produces<PaginacaoResponse<List<Responsavel>?>>();
     }
 
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
-        IPacienteHandler handler,
+        IResponsavelHandler handler,
         [FromQuery] string nome,
         [FromQuery] int numeroPagina = Configuracao.PadraoNumeroPagina,
         [FromQuery] int tamanhoPagina = Configuracao.PadraoTamanhoPagina)
     {
-        var request = new ListarPacientesPorNomeRequest
+        var request = new ListarResponsaveisPorNomeRequest
         {
             NumeroPagina = numeroPagina,
             TamanhoPagina = tamanhoPagina,
             Nome = nome
         };
-        var result = await handler.ListarPacientesPorNomeAsync(request);
+        var result = await handler.ListarResponsaveisPorNomeAsync(request);
 
         return result.Sucesso
             ? TypedResults.Ok(result)

@@ -1,28 +1,28 @@
 ﻿using Clinica.Api.Common.Api;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Pacientes;
+using Clinica.Core.Requests.Responsaveis;
 using Clinica.Core.Responses;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes;
+namespace Clinica.Api.Endpoints.Responsaveis;
 
-public class AlterarPacienteEndpoint : IEndpoint
+public class AlterarResponsavelEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapPut("/{id}", HandleAsync)
-            .WithName("Pacientes: Alterar")
-            .WithSummary("Alterar um paciente")
-            .WithDescription("Alterar um paciente")
+            .WithName("Responsáveis: Alterar")
+            .WithSummary("Alterar um responsável")
+            .WithDescription("Alterar um responsável")
             .WithOrder(2)
-            .Produces<Response<Paciente?>>();
+            .Produces<Response<Responsavel?>>();
     }
 
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
-        IPacienteHandler handler,
-        AlterarPacienteRequest request,
+        IResponsavelHandler handler,
+        AlterarResponsavelRequest request,
         int id)
     {
         request.Id = id;

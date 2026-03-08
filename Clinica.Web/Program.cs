@@ -33,6 +33,7 @@ builder.Services.AddTransient<IAccountHandler, AccountHandler>();
 builder.Services.AddTransient<IUnidadeFederativaHandler, UnidadeFederativaHandler>();
 builder.Services.AddTransient<ICidadeHandler, CidadeHandler>();
 builder.Services.AddTransient<IPacienteHandler, PacienteHandler>();
+builder.Services.AddTransient<IResponsavelHandler, ResponsavelHandler>();
 
 builder.Services.AddLocalization();
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");

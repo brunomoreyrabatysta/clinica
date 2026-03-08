@@ -8,4 +8,5 @@ public class Cidade
     public UnidadeFederativa UnidadeFederativa { get; set; } = null!;
 
     public ICollection<Paciente> Pacientes { get; } = new List<Paciente>();
+    public ICollection<Responsavel> Responsaveis { get; } = new List<Responsavel>();
 }

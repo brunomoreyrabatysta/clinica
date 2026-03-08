@@ -30,7 +30,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         }
         catch (Exception ex)
         {
-            return new Response<Cidade?>(null, 500, "[CID03] Falha ao alterar a cidade! " + ex.Message);
+            return new Response<Cidade?>(null, 500, "[CID003] Falha ao alterar a cidade! " + ex.Message);
         }
     }
 
@@ -73,7 +73,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         }
         catch (Exception ex)
         {
-            return new Response<Cidade?>(null, 500, "[CID05] Falha ao excluir a cidade! " + ex.Message);
+            return new Response<Cidade?>(null, 500, "[CID005] Falha ao excluir a cidade! " + ex.Message);
         }
     }
 
@@ -123,7 +123,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         }
         catch (Exception ex)
         {
-            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID010] Falha ao listar a(s) cidade(s) por nome! " + ex.Message);
+            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID008] Falha ao listar a(s) cidade(s) por nome! " + ex.Message);
         }
     }
 
@@ -153,7 +153,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         }
         catch (Exception ex)
         {
-            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID011] Falha ao listar a(s) cidade(s) por unidade federativa! " + ex.Message);
+            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID009] Falha ao listar a(s) cidade(s) por unidade federativa! " + ex.Message);
         }
     }
 
@@ -182,7 +182,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         }
         catch (Exception ex)
         {
-            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID012] Falha ao listar a(s) cidade(s)! " + ex.Message);
+            return new PaginacaoResponse<List<Cidade>?>(null, 500, "[CID010] Falha ao listar a(s) cidade(s)! " + ex.Message);
         }
     }
 }

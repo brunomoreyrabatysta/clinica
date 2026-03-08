@@ -73,7 +73,7 @@ public class UnidadeFederativaHandler(AppDbContext context) : IUnidadeFederativa
         }
         catch (Exception ex)
         {
-            return new Response<UnidadeFederativa?>(null, 500, "[UF05] Falha ao excluir a unidade federativa! " + ex.Message);
+            return new Response<UnidadeFederativa?>(null, 500, "[UF005] Falha ao excluir a unidade federativa! " + ex.Message);
         }
     }
 

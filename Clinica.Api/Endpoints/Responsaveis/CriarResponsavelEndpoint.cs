@@ -1,28 +1,28 @@
 ﻿using Clinica.Api.Common.Api;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
-using Clinica.Core.Requests.Pacientes;
+using Clinica.Core.Requests.Responsaveis;
 using Clinica.Core.Responses;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes;
+namespace Clinica.Api.Endpoints.Responsaveis;
 
-public class CriarPacienteEndpoint : IEndpoint
+public class CriarResponsavelEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
         app.MapPost("/", HandleAsync)
-            .WithName("Pacientes: Criar")
-            .WithSummary("Criar um novo paciente")
-            .WithDescription("Criar um novo paciente")
+            .WithName("Responsáveis: Criar")
+            .WithSummary("Criar um novo responsável")
+            .WithDescription("Criar um novo responsável")
             .WithOrder(1)
-            .Produces<Response<Paciente?>>();
+            .Produces<Response<Responsavel?>>();
     }
 
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
-        IPacienteHandler handler,
-        CriarPacienteRequest request)
+        IResponsavelHandler handler,
+        CriarResponsavelRequest request)
     {
         var result = await handler.CriarAsync(request);
 
