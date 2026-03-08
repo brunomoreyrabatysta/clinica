@@ -26,8 +26,6 @@ public class CidadeMapping : IEntityTypeConfiguration<Cidade>
             .HasPrincipalKey(c => c.Id)
             .OnDelete(DeleteBehavior.NoAction);
 
-        builder.HasOne(c => c.UnidadeFederativa)
-                        .WithMany(uf => uf.Cidades)
-                        .HasForeignKey(c => c.UnidadeFederativaId);        
+   
     }
 }

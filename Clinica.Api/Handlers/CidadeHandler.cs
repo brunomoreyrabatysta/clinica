@@ -168,7 +168,7 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
 
             var cidades = await consulta
                 .Skip((request.NumeroPagina - 1) * request.TamanhoPagina)
-                .Take(request.TamanhoPagina)
+                .Take(request.TamanhoPagina)                
                 .ToListAsync();
 
             var quantidade = await consulta

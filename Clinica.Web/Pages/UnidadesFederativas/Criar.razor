@@ -8,11 +8,15 @@
 
         <MudTextField Label="Nome"
                       HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
                       @bind-Value="InputModel.Nome"
                       For="@(() => InputModel.Nome)" />
 
         <MudTextField Label="Sigla"
                       HelperText="Campo obrigatório"
+                      MaxLength="2"
+                      Counter="2"
                       @bind-Value="InputModel.Sigla"
                       For="@(() => InputModel.Sigla)" />
 
