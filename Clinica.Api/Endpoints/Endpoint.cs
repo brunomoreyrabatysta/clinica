@@ -5,6 +5,8 @@ using Clinica.Api.Endpoints.UnidadesFederativas;
 using Clinica.Api.Endpoints.Cidades;
 using Clinica.Api.Endpoints.Pacientes;
 using Clinica.Api.Endpoints.Responsaveis;
+using Clinica.Api.Endpoints.Vinculos;
+using Clinica.Api.Endpoints.Contratos;
 
 namespace Clinica.Api.Endpoints;
 
@@ -64,6 +66,27 @@ public static class Endpoint
             .MapEndpoint<ListarResponsavelPorIdEndpoint>()
             .MapEndpoint<ListarResponsaveisPorNomeEndpoint>()
             .MapEndpoint<ListarTodosResponsaveisEndpoint>();
+
+        endPoints
+            .MapGroup("v1/vinculos")
+            .WithTags("Vinculos")
+            .RequireAuthorization()
+            .MapEndpoint<CriarVinculoEndpoint>()
+            .MapEndpoint<AlterarVinculoEndpoint>()
+            .MapEndpoint<ExcluirVinculoEndpoint>()
+            .MapEndpoint<ListarVinculoPorIdEndpoint>()
+            .MapEndpoint<ListarVinculosPorNomeEndpoint>()
+            .MapEndpoint<ListarTodosVinculosEndpoint>();
+
+        endPoints
+            .MapGroup("v1/contratos")
+            .WithTags("Contratos")
+            .RequireAuthorization()
+            .MapEndpoint<CriarContratoEndpoint>()
+            .MapEndpoint<AlterarContratoEndpoint>()
+            .MapEndpoint<ExcluirContratoEndpoint>()
+            .MapEndpoint<ListarContratoPorIdEndpoint>()
+            .MapEndpoint<ListarTodosContratosEndpoint>();
 
         endPoints
             .MapGroup("v1/identity")
