@@ -5,34 +5,33 @@ using Clinica.Core.Requests.Pacientes;
 using Clinica.Core.Responses;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes
+namespace Clinica.Api.Endpoints.Pacientes;
+
+public class ListarPacientePorIdEndpoint : IEndpoint
 {
-    public class ListarPacientePorIdEndpoint : IEndpoint
+    public static void Map(IEndpointRouteBuilder app)
     {
-        public static void Map(IEndpointRouteBuilder app)
-        {
-            app.MapGet("/{id}", HandleAsync)
-                .WithName("Pacientes: Listar por código")
-                .WithSummary("Listar um paciente")
-                .WithDescription("Listar um paciente")
-                .WithOrder(4)
-                .Produces<Response<Paciente?>>();
-        }
+        app.MapGet("/{id}", HandleAsync)
+            .WithName("Pacientes: Listar por código")
+            .WithSummary("Listar um paciente")
+            .WithDescription("Listar um paciente")
+            .WithOrder(4)
+            .Produces<Response<Paciente?>>();
+    }
 
-        private static async Task<IResult> HandleAsync(
-            ClaimsPrincipal user,
-            IPacienteHandler handler,
-            int id)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
+        IPacienteHandler handler,
+        int id)
+    {
+        var request = new ListarPacientePorIdRequest
         {
-            var request = new ListarPacientePorIdRequest
-            {
-                Id = id
-            };
-            var result = await handler.ListarPacientePorIdAsync(request);
+            Id = id
+        };
+        var result = await handler.ListarPacientePorIdAsync(request);
 
-            return result.Sucesso
-                ? TypedResults.Ok(result)
-                : TypedResults.BadRequest(result);
-        }
+        return result.Sucesso
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
     }
 }

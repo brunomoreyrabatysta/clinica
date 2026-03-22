@@ -13,7 +13,6 @@ public class ListarTodasCidadesEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
     {
-        //app.MapGet("/{tamanhoPagina}/{numeroPagina}", HandleAsync)
         app.MapGet("/", HandleAsync)
             .WithName("Cidades: Listar toda(s) cidade(s)")
             .WithSummary("Listar toda(s) cidade(s)")

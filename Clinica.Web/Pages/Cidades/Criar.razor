@@ -8,6 +8,8 @@
 
         <MudTextField Label="Nome"
                       HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
                       @bind-Value="InputModel.Nome"
                       For="@(() => InputModel.Nome)" />
 
@@ -19,7 +21,7 @@
                    AnchorOrigin="Origin.BottomCenter">
             @foreach (var uniFed in UnidadesFederativas)
             {
-                <MudSelectItem T="long" Value="@uniFed.Id">@uniFed.Nome</MudSelectItem>
+                <MudSelectItem T="long" Value="@uniFed.Id">@uniFed.Nome - @uniFed.Sigla</MudSelectItem>
             }
         </MudSelect>
 

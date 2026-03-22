@@ -23,6 +23,9 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public DbSet<Cidade> Cidades { get; set; } = null!;
     public DbSet<UnidadeFederativa> UnidadesFederativa { get; set; } = null!;
     public DbSet<Paciente> Pacientes { get; set; } = null!;
+    public DbSet<Responsavel> Responsaveis { get; set; } = null!;
+    public DbSet<Vinculo> Vinculos { get; set; } = null!;
+    public DbSet<Contrato> Contratos { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

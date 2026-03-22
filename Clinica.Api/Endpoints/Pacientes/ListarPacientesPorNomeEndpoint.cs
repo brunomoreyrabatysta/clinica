@@ -7,38 +7,37 @@ using Clinica.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes
+namespace Clinica.Api.Endpoints.Pacientes;
+
+public class ListarPacientesPorNomeEndpoint : IEndpoint
 {
-    public class ListarPacientesPorNomeEndpoint : IEndpoint
+    public static void Map(IEndpointRouteBuilder app)
     {
-        public static void Map(IEndpointRouteBuilder app)
-        {
-            app.MapGet("/{nome}", HandleAsync)
-                .WithName("Pacientes: Listar todo(s) paciente(s) por nome")
-                .WithSummary("Listar todo(s) paciente(s) por nome")
-                .WithDescription("Listar todo(s) paciente(s) por nome")
-                .WithOrder(6)
-                .Produces<PaginacaoResponse<List<Paciente>?>>();
-        }
+        app.MapGet("/{nome}", HandleAsync)
+            .WithName("Pacientes: Listar todo(s) paciente(s) por nome")
+            .WithSummary("Listar todo(s) paciente(s) por nome")
+            .WithDescription("Listar todo(s) paciente(s) por nome")
+            .WithOrder(6)
+            .Produces<PaginacaoResponse<List<Paciente>?>>();
+    }
 
-        private static async Task<IResult> HandleAsync(
-            ClaimsPrincipal user,
-            IPacienteHandler handler,
-            [FromQuery] string nome,
-            [FromQuery] int numeroPagina = Configuracao.PadraoNumeroPagina,
-            [FromQuery] int tamanhoPagina = Configuracao.PadraoTamanhoPagina)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
+        IPacienteHandler handler,
+        [FromQuery] string nome,
+        [FromQuery] int numeroPagina = Configuracao.PadraoNumeroPagina,
+        [FromQuery] int tamanhoPagina = Configuracao.PadraoTamanhoPagina)
+    {
+        var request = new ListarPacientesPorNomeRequest
         {
-            var request = new ListarPacientesPorNomeRequest
-            {
-                NumeroPagina = numeroPagina,
-                TamanhoPagina = tamanhoPagina,
-                Nome = nome
-            };
-            var result = await handler.ListarPacientesPorNomeAsync(request);
+            NumeroPagina = numeroPagina,
+            TamanhoPagina = tamanhoPagina,
+            Nome = nome
+        };
+        var result = await handler.ListarPacientesPorNomeAsync(request);
 
-            return result.Sucesso
-                ? TypedResults.Ok(result)
-                : TypedResults.BadRequest(result);
-        }
+        return result.Sucesso
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
     }
 }

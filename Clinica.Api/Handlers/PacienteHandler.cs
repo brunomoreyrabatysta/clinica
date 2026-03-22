@@ -46,7 +46,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
         }
         catch (Exception ex)
         {
-            return new Response<Paciente?>(null, 500, "[PAC03] Falha ao alterar o pcaiente! " + ex.Message);
+            return new Response<Paciente?>(null, 500, "[PAC003] Falha ao alterar o pcaiente! " + ex.Message);
         }
     }
 
@@ -104,7 +104,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
         }
         catch (Exception ex)
         {
-            return new Response<Paciente?>(null, 500, "[PAC05] Falha ao excluir o paciente! " + ex.Message);
+            return new Response<Paciente?>(null, 500, "[PAC005] Falha ao excluir o paciente! " + ex.Message);
         }
     }
 
@@ -119,7 +119,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
                 .FirstOrDefaultAsync();
 
             return paciente is null
-                ? new Response<Paciente?>(null, 404, "[PAC06] Paciente não encontrado!")
+                ? new Response<Paciente?>(null, 404, "[PAC006] Paciente não encontrado!")
                 : new Response<Paciente?>(paciente);
         }
         catch (Exception ex)
@@ -154,7 +154,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
         }
         catch (Exception ex)
         {
-            return new PaginacaoResponse<List<Paciente>?>(null, 500, "[PAC010] Falha ao listar o(s) paciente(s) por nome! " + ex.Message);
+            return new PaginacaoResponse<List<Paciente>?>(null, 500, "[PAC009] Falha ao listar o(s) paciente(s) por nome! " + ex.Message);
         }
     }
 
@@ -183,7 +183,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
         }
         catch (Exception ex)
         {
-            return new PaginacaoResponse<List<Paciente>?>(null, 500, "[UF008] Falha ao listar o(s) paciente(s)! " + ex.Message);
+            return new PaginacaoResponse<List<Paciente>?>(null, 500, "[PAC008] Falha ao listar o(s) paciente(s)! " + ex.Message);
         }
     }
 }

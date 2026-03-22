@@ -5,34 +5,33 @@ using Clinica.Core.Requests.Pacientes;
 using Clinica.Core.Responses;
 using System.Security.Claims;
 
-namespace Clinica.Api.Endpoints.Pacientes
+namespace Clinica.Api.Endpoints.Pacientes;
+
+public class ExcluirPacienteEndpoint : IEndpoint
 {
-    public class ExcluirPacienteEndpoint : IEndpoint
+    public static void Map(IEndpointRouteBuilder app)
     {
-        public static void Map(IEndpointRouteBuilder app)
-        {
-            app.MapDelete("/{id}", HandleAsync)
-                .WithName("Pacientes: Excluir")
-                .WithSummary("Excluir um paciente")
-                .WithDescription("Excluir um paciente")
-                .WithOrder(3)
-                .Produces<Response<Paciente?>>();
-        }
+        app.MapDelete("/{id}", HandleAsync)
+            .WithName("Pacientes: Excluir")
+            .WithSummary("Excluir um paciente")
+            .WithDescription("Excluir um paciente")
+            .WithOrder(3)
+            .Produces<Response<Paciente?>>();
+    }
 
-        private static async Task<IResult> HandleAsync(
-            ClaimsPrincipal user,
-            IPacienteHandler handler,
-            int id)
+    private static async Task<IResult> HandleAsync(
+        ClaimsPrincipal user,
+        IPacienteHandler handler,
+        int id)
+    {
+        var request = new ExcluirPacienteRequest
         {
-            var request = new ExcluirPacienteRequest
-            {
-                Id = id
-            };
-            var result = await handler.ExcluirAsync(request);
+            Id = id
+        };
+        var result = await handler.ExcluirAsync(request);
 
-            return result.Sucesso
-                ? TypedResults.Ok(result)
-                : TypedResults.BadRequest(result);
-        }
+        return result.Sucesso
+            ? TypedResults.Ok(result)
+            : TypedResults.BadRequest(result);
     }
 }

@@ -40,8 +40,8 @@ public partial class EditarCidadePage : ComponentBase
         IsBusy = true;
         try
         {
-            await CarregarCidadePorIdAsync();
             await CarregarUnidadeFederativaAsync();
+            await CarregarCidadePorIdAsync();
         }
         finally
         {
