@@ -102,10 +102,10 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
         try
         {
             var consulta = context
-            .Cidades
-            .AsNoTracking()
-            .Where(x => x.Nome.Contains(request.Nome))
-            .OrderBy(x => x.UnidadeFederativa.Sigla);
+                .Cidades
+                .AsNoTracking()
+                .Where(x => x.Nome.Contains(request.Nome))
+                .OrderBy(x => x.UnidadeFederativa.Sigla);
 
             var cidades = await consulta
                 .Skip((request.NumeroPagina - 1) * request.TamanhoPagina)

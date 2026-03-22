@@ -17,13 +17,18 @@ public class Contrato
     public DateTime DataTermino { get; set; }
     public DateTime DataCancelamento { get; set; }
     public int Periodo { get; set; }
-    public double ValorContrato { get; set; }
+    public decimal ValorContrato { get; set; }
+    public decimal ValorDesconto { get; set; }
+    public decimal ValorContratoLiquido { get; set; }
     public int NumeroParcela { get; set; }
-    public double ValorEntrada { get; set; }
-    public double ValorParcela { get; set; }
+    public decimal ValorEntrada { get; set; }
+    public decimal ValorParcela { get; set; }
     public DateTime DataEntrada { get; set; }
     public int DiaVencimentoDemaisParcelas { get; set; }
-    public double ValorProfissionalEquipe { get; set; }
-    public double ValorProfissionalEquipe_Hora { get; set; }
-    public double ValorTerapeutico { get; set; }
+    public decimal ValorProfissionalEquipe { get; set; }
+    public decimal ValorProfissionalEquipe_Hora { get; set; }
+    public decimal ValorTerapeutico { get; set; }
+    public string? Observacao { get; set; }
+
+    public List<Financeiro> Financeiros { get; set; } = new();
 }

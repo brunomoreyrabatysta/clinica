@@ -1,5 +1,4 @@
 ﻿using Clinica.Core.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -24,8 +23,6 @@ public class CidadeMapping : IEntityTypeConfiguration<Cidade>
             .WithOne(p => p.Cidade)
             .HasForeignKey(p => p.CidadeId)
             .HasPrincipalKey(c => c.Id)
-            .OnDelete(DeleteBehavior.NoAction);
-
-   
+            .OnDelete(DeleteBehavior.NoAction);   
     }
 }

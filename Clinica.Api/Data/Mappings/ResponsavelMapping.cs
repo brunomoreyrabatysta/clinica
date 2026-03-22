@@ -40,6 +40,7 @@ public class ResponsavelMapping : IEntityTypeConfiguration<Responsavel>
             .HasColumnType("VARCHAR")
             .HasMaxLength(50);
         builder.Property(x => x.CidadeId)
+            .IsRequired()
             .HasColumnType("INT");
         builder.Property(x => x.CEP)
             .HasColumnType("VARCHAR")
@@ -63,8 +64,8 @@ public class ResponsavelMapping : IEntityTypeConfiguration<Responsavel>
             .HasColumnType("VARCHAR")
             .HasMaxLength(150);
 
-        builder.HasOne(p => p.Cidade)
+        builder.HasOne(r => r.Cidade)
                 .WithMany(c => c.Responsaveis)
-                .HasForeignKey(p => p.CidadeId);
+                .HasForeignKey(r => r.CidadeId);
     }
 }

@@ -30,6 +30,8 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             contrato.DataCancelamento = request.DataCancelamento;
             contrato.Periodo = request.Periodo;
             contrato.ValorContrato = request.ValorContrato;
+            contrato.ValorDesconto = request.ValorDesconto;
+            contrato.ValorContratoLiquido = request.ValorContratoLiquido;
             contrato.NumeroParcela = request.NumeroParcela;
             contrato.ValorEntrada = request.ValorEntrada;
             contrato.ValorParcela = request.ValorParcela;
@@ -38,6 +40,7 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             contrato.ValorProfissionalEquipe = request.ValorProfissionalEquipe;
             contrato.ValorProfissionalEquipe_Hora = request.ValorProfissionalEquipe_Hora;
             contrato.ValorTerapeutico = request.ValorTerapeutico;
+            contrato.Observacao = request.Observacao;
 
             context.Contratos.Update(contrato);
             await context.SaveChangesAsync();
@@ -66,6 +69,8 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                 DataCancelamento = request.DataCancelamento,
                 Periodo = request.Periodo,
                 ValorContrato = request.ValorContrato,
+                ValorDesconto = request.ValorDesconto,
+                ValorContratoLiquido = request.ValorContratoLiquido,
                 NumeroParcela = request.NumeroParcela,
                 ValorEntrada = request.ValorEntrada,
                 ValorParcela = request.ValorParcela,
@@ -73,7 +78,8 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                 DiaVencimentoDemaisParcelas = request.DiaVencimentoDemaisParcelas,
                 ValorProfissionalEquipe = request.ValorProfissionalEquipe,
                 ValorProfissionalEquipe_Hora = request.ValorProfissionalEquipe_Hora,
-                ValorTerapeutico = request.ValorTerapeutico
+                ValorTerapeutico = request.ValorTerapeutico,
+                Observacao = request.Observacao
             };
 
             await context.Contratos.AddAsync(contrato);

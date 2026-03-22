@@ -23,6 +23,7 @@ public  class Responsavel
     public DateTime? DataNascimento { get; set; }
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
+    public string? Observacao { get; set; }
 
     public List<Contrato> Contratos { get; set; } = new ();
 }

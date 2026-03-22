@@ -40,6 +40,7 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
             .HasColumnType("VARCHAR")
             .HasMaxLength(50);
         builder.Property(x => x.CidadeId)
+            .IsRequired()
             .HasColumnType("INT");
         builder.Property(x => x.CEP)
             .HasColumnType("VARCHAR")

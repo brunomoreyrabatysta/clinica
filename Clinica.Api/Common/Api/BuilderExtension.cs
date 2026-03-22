@@ -70,5 +70,6 @@ public static class BuilderExtension
         builder.Services.AddTransient<IResponsavelHandler, ResponsavelHandler>();
         builder.Services.AddTransient<IVinculoHandler, VinculoHandler>();
         builder.Services.AddTransient<IContratoHandler, ContratoHandler>();
+        builder.Services.AddTransient<IFinanceiroHandler, FinanceiroHandler>();
     }
 }

@@ -37,7 +37,7 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
             paciente.DataNascimento = request.DataNascimento;
             paciente.NumeroTelefone = request.NumeroTelefone;
             paciente.Email = request.Email;
-
+            paciente.Observacao = request.Observacao;
 
             context.Pacientes.Update(paciente);
             await context.SaveChangesAsync();
@@ -72,7 +72,8 @@ public class PacienteHandler(AppDbContext context) : IPacienteHandler
                 Sexo = request.Sexo,
                 DataNascimento = request.DataNascimento,
                 NumeroTelefone = request.NumeroTelefone,
-                Email = request.Email
+                Email = request.Email,
+                Observacao = request.Observacao
             };
 
             await context.Pacientes.AddAsync(paciente);
