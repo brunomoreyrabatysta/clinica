@@ -41,6 +41,7 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             contrato.ValorProfissionalEquipe_Hora = request.ValorProfissionalEquipe_Hora;
             contrato.ValorTerapeutico = request.ValorTerapeutico;
             contrato.Observacao = request.Observacao;
+            contrato.ValorCreditoMensal = request.ValorCreditoMensal;
 
             context.Contratos.Update(contrato);
             await context.SaveChangesAsync();
@@ -79,7 +80,8 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                 ValorProfissionalEquipe = request.ValorProfissionalEquipe,
                 ValorProfissionalEquipe_Hora = request.ValorProfissionalEquipe_Hora,
                 ValorTerapeutico = request.ValorTerapeutico,
-                Observacao = request.Observacao
+                Observacao = request.Observacao,
+                ValorCreditoMensal = request.ValorCreditoMensal
             };
 
             await context.Contratos.AddAsync(contrato);

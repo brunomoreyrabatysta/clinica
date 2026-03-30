@@ -67,6 +67,8 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
         builder.Property(x => x.Observacao)            
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
+        builder.Property(x => x.ValorCreditoMensal)
+            .HasColumnType("NUMERIC(15,2)");
 
         builder.HasOne(c => c.Paciente)
                 .WithMany(p => p.Contratos)

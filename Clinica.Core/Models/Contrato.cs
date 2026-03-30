@@ -27,8 +27,9 @@ public class Contrato
     public int DiaVencimentoDemaisParcelas { get; set; }
     public decimal ValorProfissionalEquipe { get; set; }
     public decimal ValorProfissionalEquipe_Hora { get; set; }
-    public decimal ValorTerapeutico { get; set; }
+    public decimal ValorTerapeutico { get; set; }    
     public string? Observacao { get; set; }
+    public decimal ValorCreditoMensal { get; set; }
 
     public List<Financeiro> Financeiros { get; set; } = new();
 }

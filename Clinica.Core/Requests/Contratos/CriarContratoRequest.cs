@@ -59,4 +59,7 @@ public class CriarContratoRequest : BaseRequest
     [Required(ErrorMessage = "O valor terapêutico não foi preenchido!")] 
     public decimal ValorTerapeutico { get; set; }
     public string? Observacao { get; set; }
+
+    [Required(ErrorMessage = "O valor de crédito mensal não foi preenchido!")]
+    public decimal ValorCreditoMensal { get; set; }
 }
