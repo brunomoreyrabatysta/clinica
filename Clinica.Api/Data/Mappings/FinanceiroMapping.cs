@@ -48,6 +48,10 @@ public class FinanceiroMapping : IEntityTypeConfiguration<Financeiro>
         builder.Property(x => x.Observacao)            
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
+        builder.Property(x => x.TipoCredito)
+            .IsRequired()
+            .HasColumnType("CHAR")
+            .HasMaxLength(1);
 
 
         builder.HasOne(f => f.Contrato)

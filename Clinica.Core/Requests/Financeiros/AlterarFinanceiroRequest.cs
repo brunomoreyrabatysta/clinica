@@ -35,4 +35,7 @@ public class AlterarFinanceiroRequest : BaseRequest
     [Required(ErrorMessage = "O tipo do financeiro não foi preenchido!")]
     public ETipoFinanceiro TipoFinanceiro { get; set; }
     public string? Observacao { get; set; }
+
+    [Required(ErrorMessage = "O tipo do crédito não foi preenchido!")]
+    public ETipoCredito TipoCredito { get; set; }
 }

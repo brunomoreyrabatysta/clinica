@@ -34,6 +34,7 @@ public class FinanceiroHandler(AppDbContext context) : IFinanceiroHandler
             financeiro.NumeroParcela = request.NumeroParcela;
             financeiro.TipoFinanceiro = request.TipoFinanceiro;
             financeiro.Observacao = request.Observacao;
+            financeiro.TipoCredito = request.TipoCredito;
 
             context.Financeiros.Update(financeiro);
             await context.SaveChangesAsync();
@@ -65,7 +66,8 @@ public class FinanceiroHandler(AppDbContext context) : IFinanceiroHandler
                 Situacao = request.Situacao,
                 NumeroParcela = request.NumeroParcela,
                 TipoFinanceiro = request.TipoFinanceiro,
-                Observacao = request.Observacao
+                Observacao = request.Observacao,
+                TipoCredito = request.TipoCredito
             };
 
             await context.Financeiros.AddAsync(financeiro);

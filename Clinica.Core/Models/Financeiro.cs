@@ -20,4 +20,5 @@ public class Financeiro
     public int NumeroParcela { get; set; }
     public ETipoFinanceiro TipoFinanceiro { get; set; }
     public string? Observacao { get; set; }
+    public ETipoCredito TipoCredito { get; set; }
 }
