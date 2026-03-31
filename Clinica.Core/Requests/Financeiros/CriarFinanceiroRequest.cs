@@ -12,8 +12,7 @@ public class CriarFinanceiroRequest : BaseRequest
 
     [Required(ErrorMessage = "A data de emissão não foi preenchida!")]
     public DateTime DataEmissao { get; set; }
-
-    [Required(ErrorMessage = "A data de vencimento não foi preenchida!")]
+   
     public DateTime DataVencimento { get; set; }
     public DateTime DataPagamento { get; set; }
     public DateTime DataCancelamento { get; set; }

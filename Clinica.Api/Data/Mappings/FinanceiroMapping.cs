@@ -17,8 +17,7 @@ public class FinanceiroMapping : IEntityTypeConfiguration<Financeiro>
         builder.Property(x => x.DataEmissao)
             .IsRequired()
             .HasColumnType("DATE");
-        builder.Property(x => x.DataVencimento)
-            .IsRequired()
+        builder.Property(x => x.DataVencimento)            
             .HasColumnType("DATE");
         builder.Property(x => x.DataPagamento)
             .HasColumnType("DATE");
