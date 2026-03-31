@@ -15,7 +15,7 @@ public class CriarContratoRequest : BaseRequest
     public Responsavel Responsavel { get; set; } = new();
 
     [Required(ErrorMessage = "O vínculo não foi preenchido!")]
-    public long VinculoId { get; set; }
+    public int VinculoId { get; set; }
     public Vinculo Vinculo { get; set; } = new();
 
     [Required(ErrorMessage = "A situação não foi preenchida!")]

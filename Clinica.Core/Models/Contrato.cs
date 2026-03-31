@@ -9,7 +9,7 @@ public class Contrato
     public Paciente Paciente { get; set; } = new ();
     public long ResponsavelId { get; set; }
     public Responsavel Responsavel { get; set; } = new ();
-    public long VinculoId { get; set; }
+    public int VinculoId { get; set; }
     public Vinculo Vinculo { get; set; } = new ();
     public ESituacao Situacao { get; set; }
     public DateTime DataEmissao { get; set; }
