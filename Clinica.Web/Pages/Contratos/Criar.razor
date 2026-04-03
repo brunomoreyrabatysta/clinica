@@ -1,0 +1,182 @@
+﻿@page "/contrato/adicionar"
+@inherits CriarContratoPage
+
+<MudText Typo="Typo.h3">Cadastrar novo contrato</MudText>
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+
+        <MudSelect T="long"
+                   Label="Paciente"
+                   @bind-Value="InputModel.PacienteId"
+                   Required="true"
+                   For="@(() => InputModel.PacienteId)"
+                   AnchorOrigin="Origin.BottomCenter">
+            @foreach (var paciente in Pacientes)
+            {
+                <MudSelectItem T="long" Value="@paciente.Id">@paciente.Nome</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudSelect T="long"
+                   Label="Responsável"
+                   @bind-Value="InputModel.ResponsavelId"
+                   Required="true"
+                   For="@(() => InputModel.ResponsavelId)"
+                   AnchorOrigin="Origin.BottomCenter">
+            @foreach (var responsavel in Responsaveis)
+            {
+                <MudSelectItem T="long" Value="@responsavel.Id">@responsavel.Nome</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudSelect T="int"
+                   Label="Vínculo"
+                   @bind-Value="InputModel.VinculoId"
+                   Required="true"
+                   For="@(() => InputModel.VinculoId)"
+                   AnchorOrigin="Origin.BottomCenter">
+            @foreach (var vinculo in Vinculos)
+            {
+                <MudSelectItem T="int" Value="@vinculo.Id">@vinculo.Nome</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudSelect T="Clinica.Core.Enums.ESituacao"
+                   Label="Situação"
+                   @bind-Value="InputModel.Situacao"
+                   Required="true"
+                   For="@(() => InputModel.Situacao)"
+                   AnchorOrigin="Origin.BottomCenter">
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Aberto">Aberto</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Fechado">Fechado</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Andamento">Andamento</MudSelectItem>
+        </MudSelect>
+
+        <MudTextField Label="Data de emissão"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.DataEmissao"
+                      For="@(() => InputModel.DataEmissao)" />
+
+        <MudTextField Label="Data de início"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.DataInicio"
+                      For="@(() => InputModel.DataInicio)" />
+
+        <MudTextField Label="Data de término"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.DataTermino"
+                      For="@(() => InputModel.DataTermino)" />
+
+        <MudTextField Label="Data de cancelamento"
+                      MaxLength="300"
+                      Counter="300"                      
+                      @bind-Value="InputModel.DataCancelamento"
+                      For="@(() => InputModel.DataCancelamento)" />
+
+        <MudTextField Label="Períodos (meses)"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.Periodo"
+                      For="@(() => InputModel.Periodo)" />
+
+        <MudTextField Label="Valor do contrato"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.ValorContrato"
+                      For="@(() => InputModel.ValorContrato)" />
+
+        <MudTextField Label="Valor de desconto"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorDesconto"
+                      For="@(() => InputModel.ValorDesconto)" />
+
+        <MudTextField Label="Valor do contrato líquido"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorContratoLiquido"
+                      For="@(() => InputModel.ValorContratoLiquido)" />
+
+        <MudTextField Label="Número de parcdelas (financeiro)"
+                      HelperText="Campo obrigatório"
+                      MaxLength="300"
+                      Counter="300"
+                      Required="true"
+                      @bind-Value="InputModel.NumeroParcela"
+                      For="@(() => InputModel.NumeroParcela)" />
+
+        <MudTextField Label="Valor da entrada"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorEntrada"
+                      For="@(() => InputModel.ValorEntrada)" />
+
+        <MudTextField Label="Data da entrada"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.DataEntrada"
+                      For="@(() => InputModel.DataEntrada)" />
+
+        <MudTextField Label="Valor das parcelas"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorParcela"
+                      For="@(() => InputModel.ValorParcela)" />
+
+        <MudTextField Label="Dia de vencimento das demais parcelas"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.DiaVencimentoDemaisParcelas"
+                      For="@(() => InputModel.DiaVencimentoDemaisParcelas)" />
+
+        <MudTextField Label="Valor de crédito mensal"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorCreditoMensal"
+                      For="@(() => InputModel.ValorCreditoMensal)" />
+
+        <MudTextField Label="Valor do profissional"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorProfissionalEquipe"
+                      For="@(() => InputModel.ValorProfissionalEquipe)" />
+
+        <MudTextField Label="Valor da hora do profissional"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorProfissionalEquipe_Hora"
+                      For="@(() => InputModel.ValorProfissionalEquipe_Hora)" />
+
+        <MudTextField Label="Valor do terapêutico"
+                      MaxLength="300"
+                      Counter="300"
+                      @bind-Value="InputModel.ValorTerapeutico"
+                      For="@(() => InputModel.ValorTerapeutico)" />
+
+        <MudTextField Label="Obsevação"
+                      MaxLength="8000"
+                      Counter="300"
+                      @bind-Value="InputModel.Observacao"
+                      For="@(() => InputModel.Observacao)" />
+
+        <MudButton ButtonType="ButtonType.Submit"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Class="mt-4">Salvar</MudButton>
+    </EditForm>
+</MudPaper>
