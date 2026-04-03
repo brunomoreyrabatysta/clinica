@@ -3,5 +3,5 @@
 public enum ETipoFinanceiro
 {
     Mensalidade = 'M',
-    AVulso = 'A'
+    Avulso = 'A'
 }

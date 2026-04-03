@@ -4,5 +4,5 @@ public enum ESituacaoFinanceiro
 {
     Aberto = 'A',
     Pago = 'P',
-    Cacnelado = 'C'
+    Cancelado = 'C'
 }
