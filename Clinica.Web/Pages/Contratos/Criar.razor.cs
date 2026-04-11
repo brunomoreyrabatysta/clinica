@@ -81,6 +81,22 @@ public partial class CriarContratoPage : ComponentBase
             IsBusy = false;
         }
     }
+
+    protected void CalculoValorContratoLiquido()
+    {
+        if (InputModel.ValorDesconto > InputModel.ValorContrato)
+        {
+            Snackbar.Add("O valor do desconto não pode ser maior que o valor do contrato.", Severity.Warning);
+            InputModel.ValorDesconto = 0;
+        }
+
+        if (InputModel.ValorContrato > 0 && InputModel.ValorDesconto > 0)
+        {
+            InputModel.ValorContratoLiquido = InputModel.ValorContrato - InputModel.ValorDesconto;
+        }
+        else
+            InputModel.ValorContratoLiquido = InputModel.ValorContrato;
+    }
     #endregion
 
     #region Private Methods

@@ -92,9 +92,10 @@
                          Variant="Variant.Text"
                          HelperText="Campo obrigatório"
                          Required="true"
-                         Immediate="false"
-                         Format="N2"
+                         Immediate="true"
+                         Format="C"
                          T="decimal"
+                         @onblur="CalculoValorContratoLiquido"
                          @bind-Value="InputModel.ValorContrato"
                          For="@(() => InputModel.ValorContrato)" />
 
@@ -102,9 +103,10 @@
                          Min="0" 
                          HideSpinButtons="true"
                          Variant="Variant.Text"
-                         Immediate="false"
-                         Format="N2"
+                         Immediate="true"
+                         Format="C"
                          T="decimal"
+                         @onblur="CalculoValorContratoLiquido"
                          @bind-Value="InputModel.ValorDesconto"
                          For="@(() => InputModel.ValorDesconto)" />
 
@@ -113,7 +115,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          ReadOnly="true"
                          @bind-Value="InputModel.ValorContratoLiquido"
@@ -133,7 +135,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorEntrada"
                          For="@(() => InputModel.ValorEntrada)" />
@@ -149,7 +151,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorParcela"
                          For="@(() => InputModel.ValorParcela)" />
@@ -168,7 +170,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorCreditoMensal"
                          For="@(() => InputModel.ValorCreditoMensal)" />
@@ -178,7 +180,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorProfissionalEquipe"
                          For="@(() => InputModel.ValorProfissionalEquipe)" />
@@ -188,7 +190,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorProfissionalEquipe_Hora"
                          For="@(() => InputModel.ValorProfissionalEquipe_Hora)" />
@@ -198,7 +200,7 @@
                          HideSpinButtons="true"
                          Variant="Variant.Text"
                          Immediate="false"
-                         Format="N2"
+                         Format="C"
                          T="decimal"
                          @bind-Value="InputModel.ValorTerapeutico"
                          For="@(() => InputModel.ValorTerapeutico)" />
