@@ -23,6 +23,6 @@ public class CidadeMapping : IEntityTypeConfiguration<Cidade>
             .WithOne(p => p.Cidade)
             .HasForeignKey(p => p.CidadeId)
             .HasPrincipalKey(c => c.Id)
-            .OnDelete(DeleteBehavior.NoAction);   
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

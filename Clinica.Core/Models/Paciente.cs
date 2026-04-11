@@ -1,4 +1,5 @@
 ﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinica.Core.Models;
 
@@ -14,6 +15,7 @@ public class Paciente
     public string? Complemento { get; set; }
     public string? Numero { get; set; }
     public string? Bairro { get; set; }
+    [NotMapped]
     public Cidade? Cidade { get; set; }
     public long? CidadeId { get; set; }
     public string? CEP { get; set; }
@@ -25,5 +27,6 @@ public class Paciente
     public string? Email { get; set; }
     public string? Observacao { get; set; }
 
+    [NotMapped]
     public List<Contrato> Contratos { get; set; } = new();
 }

@@ -106,6 +106,10 @@ else
                            For="@(() => InputModel.DataNascimento)"
                            HelperText="Selecione a data de nascimento" />
 
+            <MudTextField Label="Observação"
+                          @bind-Value="InputModel.Observacao"
+                          For="@(() => InputModel.Observacao)" />
+
 
             <div class="d-flex mt-8">
                 @if (IsBusy)

@@ -2,7 +2,7 @@
 
 public enum ESituacaoFinanceiro
 {
-    Aberto = 'A',
-    Pago = 'P',
-    Cancelado = 'C'
+    Aberto = 1,
+    Pago = 2,
+    Cancelado = 3
 }

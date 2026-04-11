@@ -36,25 +36,23 @@ public class FinanceiroMapping : IEntityTypeConfiguration<Financeiro>
             .HasColumnType("NUMERIC(15,2)");
         builder.Property(x => x.Situacao)
             .IsRequired()
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
         builder.Property(x => x.NumeroParcela)            
             .HasColumnType("INT");
         builder.Property(x => x.TipoFinanceiro)
             .IsRequired()
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
         builder.Property(x => x.Observacao)            
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
         builder.Property(x => x.TipoCredito)
             .IsRequired()
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
 
-
+        /*
         builder.HasOne(f => f.Contrato)
                 .WithMany(c => c.Financeiros)
                 .HasForeignKey(f => f.ContratoId);
+        */
     }
 }

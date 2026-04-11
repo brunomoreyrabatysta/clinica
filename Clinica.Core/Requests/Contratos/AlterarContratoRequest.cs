@@ -25,14 +25,14 @@ public class AlterarContratoRequest : BaseRequest
     public ESituacao Situacao { get; set; }
     
     [Required(ErrorMessage = "A data de emissão não foi preenchida!")]
-    public DateTime DataEmissao { get; set; }
+    public DateTime? DataEmissao { get; set; }
     
     [Required(ErrorMessage = "A data de início não foi preenchida!")]
-    public DateTime DataInicio { get; set; }
+    public DateTime? DataInicio { get; set; }
     
     [Required(ErrorMessage = "A data de término não foi preenchida!")]
-    public DateTime DataTermino { get; set; }
-    public DateTime DataCancelamento { get; set; }
+    public DateTime? DataTermino { get; set; }
+    public DateTime? DataCancelamento { get; set; }
 
     [Required(ErrorMessage = "O período não foi preenchido!")]
     public int Periodo { get; set; }
@@ -48,7 +48,7 @@ public class AlterarContratoRequest : BaseRequest
     public int NumeroParcela { get; set; }
     public decimal ValorEntrada { get; set; }
     public decimal ValorParcela { get; set; }
-    public DateTime DataEntrada { get; set; }
+    public DateTime? DataEntrada { get; set; }
 
     [Required(ErrorMessage = "O dia de vencimento das demais parcelas não foi preenchido!")]
     public int DiaVencimentoDemaisParcelas { get; set; }

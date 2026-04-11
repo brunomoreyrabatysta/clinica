@@ -2,6 +2,7 @@
 
 public enum ETipoFinanceiro
 {
-    Mensalidade = 'M',
-    Avulso = 'A'
+    Mensalidade = 1,
+    Avulso = 2,
+    Gasto = 3
 }

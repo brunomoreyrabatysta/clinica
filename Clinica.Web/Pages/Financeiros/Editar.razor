@@ -28,31 +28,31 @@ else
                 }
             </MudSelect>
 
-            <MudTextField Label="Data de emissão"
-                          HelperText="Campo obrigatório"
-                          MaxLength="300"
-                          Counter="300"
-                          Required="true"
-                          @bind-Value="InputModel.DataEmissao"
-                          For="@(() => InputModel.DataEmissao)" />
+            <MudDatePicker @bind-Date="InputModel.DataEmissao"
+                           Label="Data de emissão"
+                           Required="true"
+                           For="@(() => InputModel.DataEmissao)"
+                           HelperText="Selecione a data de emissão" />
 
-            <MudTextField Label="Data de vencimento"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.DataVencimento"
-                          For="@(() => InputModel.DataVencimento)" />
+            <MudDatePicker @bind-Date="InputModel.DataVencimento"
+                           Label="Data de vencimento"
+                           For="@(() => InputModel.DataVencimento)"
+                           HelperText="Selecione a data de vencimento" />
 
-            <MudTextField Label="Data de pagamento"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.DataPagamento"
-                          For="@(() => InputModel.DataPagamento)" />
+            <MudDatePicker @bind-Date="InputModel.DataVencimento"
+                           Label="Data de vencimento"
+                           For="@(() => InputModel.DataVencimento)"
+                           HelperText="Selecione a data de vencimento" />
 
-            <MudTextField Label="Data de cancelamento"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.DataCancelamento"
-                          For="@(() => InputModel.DataCancelamento)" />
+            <MudDatePicker @bind-Date="InputModel.DataPagamento"
+                           Label="Data de pagamento"
+                           For="@(() => InputModel.DataPagamento)"
+                           HelperText="Selecione a data de pagamento" />
+
+            <MudDatePicker @bind-Date="InputModel.DataCancelamento"
+                           Label="Data de cancelamento"
+                           For="@(() => InputModel.DataCancelamento)"
+                           HelperText="Selecione a data de cancelamento" />
 
             <MudSelect T="Clinica.Core.Enums.ESituacaoFinanceiro"
                        Label="Situação"
@@ -65,43 +65,70 @@ else
                 <MudSelectItem T="Clinica.Core.Enums.ESituacaoFinanceiro" Value="Clinica.Core.Enums.ESituacaoFinanceiro.Cancelado">Cancelado</MudSelectItem>
             </MudSelect>
 
-            <MudTextField Label="Valor"
-                          HelperText="Campo obrigatório"
-                          Required="true"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.Valor"
-                          For="@(() => InputModel.Valor)" />
+            <MudNumericField Label="Valor"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Required="true"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.Valor"
+                             For="@(() => InputModel.Valor)" />
 
-            <MudTextField Label="Valor de mora"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.ValorMora"
-                          For="@(() => InputModel.ValorMora)" />
+            <MudNumericField Label="Valor de mora"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorMora"
+                             For="@(() => InputModel.ValorMora)" />
 
-            <MudTextField Label="Valor de juros"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.ValorJuros"
-                          For="@(() => InputModel.ValorJuros)" />
+            <MudNumericField Label="Valor de juros"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorJuros"
+                             For="@(() => InputModel.ValorJuros)" />
 
-            <MudTextField Label="Valor do desconto"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.ValorDesconto"
-                          For="@(() => InputModel.ValorDesconto)" />
+            <MudNumericField Label="Valor de desconto"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorDesconto"
+                             For="@(() => InputModel.ValorDesconto)" />
 
-            <MudTextField Label="Valor pago"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.ValorPago"
-                          For="@(() => InputModel.ValorPago)" />
+            <MudNumericField Label="Valor pago"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorPago"
+                             For="@(() => InputModel.ValorPago)" />
 
-            <MudTextField Label="Número da parcela"
-                          MaxLength="300"
-                          Counter="300"
-                          @bind-Value="InputModel.NumeroParcela"
-                          For="@(() => InputModel.NumeroParcela)" />
+
+            <MudNumericField Label="Número da parcela"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             @bind-Value="InputModel.NumeroParcela"
+                             For="@(() => InputModel.NumeroParcela)" />
 
             <MudSelect T="Clinica.Core.Enums.ETipoFinanceiro"
                        Label="Tipo do financeiro"
@@ -111,6 +138,7 @@ else
                        AnchorOrigin="Origin.BottomCenter">
                 <MudSelectItem T="Clinica.Core.Enums.ETipoFinanceiro" Value="Clinica.Core.Enums.ETipoFinanceiro.Mensalidade">Mensalidade</MudSelectItem>
                 <MudSelectItem T="Clinica.Core.Enums.ETipoFinanceiro" Value="Clinica.Core.Enums.ETipoFinanceiro.Avulso">Avulso</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoFinanceiro" Value="Clinica.Core.Enums.ETipoFinanceiro.Gasto">Gasto</MudSelectItem>
             </MudSelect>
 
             <MudSelect T="Clinica.Core.Enums.ETipoCredito"
@@ -123,13 +151,12 @@ else
                 <MudSelectItem T="Clinica.Core.Enums.ETipoCredito" Value="Clinica.Core.Enums.ETipoCredito.Debito">Débito</MudSelectItem>
             </MudSelect>
 
-            <MudTextField Label="Observação"
+            <MudTextField Label="Obsevação"
                           MaxLength="8000"
-                          Counter="300"
+                          Counter="8000"
+                          Lines="5"
                           @bind-Value="InputModel.Observacao"
                           For="@(() => InputModel.Observacao)" />
-
-
 
             <div class="d-flex mt-8">
                 @if (IsBusy)

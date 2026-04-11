@@ -11,11 +11,11 @@ public class CriarFinanceiroRequest : BaseRequest
     public Contrato Contrato { get; set; } = new();
 
     [Required(ErrorMessage = "A data de emissão não foi preenchida!")]
-    public DateTime DataEmissao { get; set; }
+    public DateTime? DataEmissao { get; set; }
    
-    public DateTime DataVencimento { get; set; }
-    public DateTime DataPagamento { get; set; }
-    public DateTime DataCancelamento { get; set; }
+    public DateTime? DataVencimento { get; set; }
+    public DateTime? DataPagamento { get; set; }
+    public DateTime? DataCancelamento { get; set; }
 
     [Required(ErrorMessage = "O valor do financeiro não foi preenchido!")]
     public decimal Valor { get; set; }

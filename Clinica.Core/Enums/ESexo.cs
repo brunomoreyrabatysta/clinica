@@ -2,6 +2,6 @@
 
 public enum ESexo
 {
-    Masculino = 'M',
-    Femininno = 'F'
+    Masculino = 1,
+    Femininno = 2
 }

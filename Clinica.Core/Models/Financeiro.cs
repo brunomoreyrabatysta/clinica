@@ -1,4 +1,5 @@
 ﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinica.Core.Models;
 
@@ -6,11 +7,12 @@ public class Financeiro
 {
     public long Id { get; set; }
     public long ContratoId { get; set; }
+    [NotMapped]
     public Contrato Contrato { get; set; } = new();
-    public DateTime DataEmissao { get; set; }
-    public DateTime DataVencimento { get; set; }
-    public DateTime DataPagamento { get; set; }
-    public DateTime DataCancelamento { get; set; }
+    public DateTime? DataEmissao { get; set; }
+    public DateTime? DataVencimento { get; set; }
+    public DateTime? DataPagamento { get; set; }
+    public DateTime? DataCancelamento { get; set; }
     public decimal Valor { get; set; }
     public decimal ValorMora { get; set; }
     public decimal ValorJuros { get; set; }

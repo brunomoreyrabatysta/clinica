@@ -96,6 +96,12 @@
                        For="@(() => InputModel.DataNascimento)"
                        HelperText="Selecione a data de nascimento" />
 
+        <MudTextField Label="Observação"
+                      MaxLength="8000"
+                      Counter="300"
+                      @bind-Value="InputModel.Observacao"
+                      For="@(() => InputModel.Observacao)" />
+
         <MudButton ButtonType="ButtonType.Submit"
                    Variant="Variant.Filled"
                    Color="Color.Primary"

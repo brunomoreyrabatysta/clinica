@@ -28,10 +28,14 @@
     </ToolBarContent>
     <Columns>
         <PropertyColumn Property="x => x.Id" Title="#" />
-        <PropertyColumn Property="x => x.DataEmissao" Title="Dt. emissão" />
-        <PropertyColumn Property="x => x.DataVencimento" Title="Dt. vencimento" />
+        <PropertyColumn Property="x => x.DataEmissao" Title="Dt. emissão" Format="dd/MM/yyyy" />
+        <PropertyColumn Property="x => x.DataVencimento" Title="Dt. vencimento" Format="dd/MM/yyyy" />
         <PropertyColumn Property="x => x.Contrato.Paciente.Nome" Title="Paciente" />
         <PropertyColumn Property="x => x.Contrato.Responsavel.Nome" Title="Responsável" />
+        <PropertyColumn Property="x => x.Valor" Title="Valor" Format="C" />
+        <PropertyColumn Property="x => x.Situacao" Title="Situação" />
+        <PropertyColumn Property="x => x.TipoCredito" Title="Tipo de crédito" />
+        <PropertyColumn Property="x => x.TipoFinanceiro" Title="Tipo do financeiro" />
         <TemplateColumn Class="d-flex justify-end">
             <CellTemplate>
                 <MudStack Row>

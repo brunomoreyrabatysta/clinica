@@ -52,8 +52,7 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
             .HasColumnType("VARCHAR")
             .HasMaxLength(100);
         builder.Property(x => x.Sexo)
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
         builder.Property(x => x.DataNascimento)
             .IsRequired()
             .HasColumnType("DATE");
@@ -63,7 +62,10 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
         builder.Property(x => x.Email)
             .HasColumnType("VARCHAR")
             .HasMaxLength(150);
-        
+        builder.Property(x => x.Observacao)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(8000);
+
         builder.HasOne(p => p.Cidade)
                 .WithMany(c => c.Pacientes)
                 .HasForeignKey(p => p.CidadeId);

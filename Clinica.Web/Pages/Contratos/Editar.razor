@@ -1,5 +1,237 @@
-﻿<h3>Editar</h3>
+﻿@page "/contrato/editar/{id}"
+@inherits EditarContratoPage
 
-@code {
+<MudText Typo="Typo.h3">Editar contrato</MudText>
 
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular Indeterminate="true"
+                             Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudSelect T="long"
+                       Label="Paciente"
+                       @bind-Value="InputModel.PacienteId"
+                       Required="true"
+                       For="@(() => InputModel.PacienteId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var paciente in Pacientes)
+                {
+                    <MudSelectItem T="long" Value="@paciente.Id">@paciente.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="long"
+                       Label="Responsável"
+                       @bind-Value="InputModel.ResponsavelId"
+                       Required="true"
+                       For="@(() => InputModel.ResponsavelId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var responsavel in Responsaveis)
+                {
+                    <MudSelectItem T="long" Value="@responsavel.Id">@responsavel.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="int"
+                       Label="Vínculo"
+                       @bind-Value="InputModel.VinculoId"
+                       Required="true"
+                       For="@(() => InputModel.VinculoId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var vinculo in Vinculos)
+                {
+                    <MudSelectItem T="int" Value="@vinculo.Id">@vinculo.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="Clinica.Core.Enums.ESituacao"
+                       Label="Situação"
+                       @bind-Value="InputModel.Situacao"
+                       Required="true">
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Aberto">Aberto</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Fechado">Fechado</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Andamento">Andamento</MudSelectItem>
+            </MudSelect>
+
+
+            <MudDatePicker @bind-Date="InputModel.DataEmissao"
+                           Label="Data de emissão"
+                           Required="true"
+                           For="@(() => InputModel.DataEmissao)"
+                           HelperText="Selecione a data de emissão" />
+
+            <MudDatePicker @bind-Date="InputModel.DataInicio"
+                           Label="Data de início"
+                           Required="true"
+                           For="@(() => InputModel.DataInicio)"
+                           HelperText="Selecione a data de início" />
+
+            <MudDatePicker @bind-Date="InputModel.DataTermino"
+                           Label="Data de término"
+                           Required="true"
+                           For="@(() => InputModel.DataTermino)"
+                           HelperText="Selecione a data de término" />
+
+            <MudDatePicker @bind-Date="InputModel.DataCancelamento"
+                           Label="Data de cancelamento"
+                           Required="true"
+                           For="@(() => InputModel.DataCancelamento)"
+                           HelperText="Selecione a data de cancelamento" />
+
+            <MudNumericField Label="Períodos (meses)"
+                             Min="1" Max="12"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Required="true"
+                             @bind-Value="InputModel.Periodo"
+                             For="@(() => InputModel.Periodo)" />
+
+            <MudNumericField Label="Valor do contrato"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             HelperText="Campo obrigatório"
+                             Required="true"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorContrato"
+                             For="@(() => InputModel.ValorContrato)" />
+
+            <MudNumericField Label="Valor do desconto"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorDesconto"
+                             For="@(() => InputModel.ValorDesconto)" />
+
+            <MudNumericField Label="Valor do contrato líquido"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             ReadOnly="true"
+                             @bind-Value="InputModel.ValorContratoLiquido"
+                             For="@(() => InputModel.ValorContratoLiquido)" />
+
+            <MudNumericField Label="Número de parcdelas (financeiro)"
+                             Min="1" Max="12"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             T="int"
+                             @bind-Value="InputModel.NumeroParcela"
+                             For="@(() => InputModel.NumeroParcela)" />
+
+            <MudNumericField Label="Valor da entrada"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorEntrada"
+                             For="@(() => InputModel.ValorEntrada)" />
+
+            <MudDatePicker @bind-Date="InputModel.DataEntrada"
+                           Label="Data de entrada"
+                           Required="true"
+                           For="@(() => InputModel.DataEntrada)"
+                           HelperText="Selecione a data de entrada" />
+
+            <MudNumericField Label="Valor das parcelas"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorParcela"
+                             For="@(() => InputModel.ValorParcela)" />
+
+            <MudNumericField Label="Dia de vencimento das demais parcelas"
+                             Min="1" Max="31"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             T="int"
+                             @bind-Value="InputModel.DiaVencimentoDemaisParcelas"
+                             For="@(() => InputModel.DiaVencimentoDemaisParcelas)" />
+
+            <MudNumericField Label="Valor de crédito mensal"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorCreditoMensal"
+                             For="@(() => InputModel.ValorCreditoMensal)" />
+
+            <MudNumericField Label="Valor do profissional"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorProfissionalEquipe"
+                             For="@(() => InputModel.ValorProfissionalEquipe)" />
+
+            <MudNumericField Label="Valor da hora do profissional"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorProfissionalEquipe_Hora"
+                             For="@(() => InputModel.ValorProfissionalEquipe_Hora)" />
+
+            <MudNumericField Label="Valor do terapêutico"
+                             Min="0"
+                             HideSpinButtons="true"
+                             Variant="Variant.Text"
+                             Immediate="false"
+                             Format="N2"
+                             T="decimal"
+                             @bind-Value="InputModel.ValorTerapeutico"
+                             For="@(() => InputModel.ValorTerapeutico)" />
+
+            <MudTextField Label="Obsevação"
+                          MaxLength="8000"
+                          Counter="8000"
+                          Lines="5"
+                          @bind-Value="InputModel.Observacao"
+                          For="@(() => InputModel.Observacao)" />
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
 }

@@ -16,10 +16,12 @@ public class VinculoMapping : IEntityTypeConfiguration<Vinculo>
             .HasColumnType("VARCHAR")
             .HasMaxLength(300);
 
-        builder.HasMany(v => v.Contratos)
+        /*
+         * builder.HasMany(v => v.Contratos)
             .WithOne(c => c.Vinculo)
             .HasForeignKey(c => c.VinculoId)
             .HasPrincipalKey(v => v.Id)
             .OnDelete(DeleteBehavior.NoAction);
+        */
     }
 }

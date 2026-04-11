@@ -12,18 +12,19 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.PacienteId)
+            .HasColumnName("PacienteId")
             .IsRequired()
             .HasColumnType("INT");
         builder.Property(x => x.ResponsavelId)
+            .HasColumnName("ResponsavelId")
             .IsRequired()
             .HasColumnType("INT");
         builder.Property(x => x.VinculoId)
             .IsRequired()
             .HasColumnType("INT");
-        builder.Property(x => x.Situacao)
+        builder.Property(x => x.Situacao)            
             .IsRequired()
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
         builder.Property(x => x.DataEmissao)
             .IsRequired()
             .HasColumnType("DATE");
@@ -41,7 +42,7 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
         builder.Property(x => x.ValorContrato)
             .IsRequired()
             .HasColumnType("NUMERIC(15,2)");
-        builder.Property(x => x.ValorDesconto)            
+        builder.Property(x => x.ValorDesconto)
             .HasColumnType("NUMERIC(15,2)");
         builder.Property(x => x.ValorContratoLiquido)
             .IsRequired()
@@ -64,12 +65,13 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
             .HasColumnType("NUMERIC(15,2)");
         builder.Property(x => x.ValorTerapeutico)
             .HasColumnType("NUMERIC(15,2)");
-        builder.Property(x => x.Observacao)            
+        builder.Property(x => x.Observacao)
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
         builder.Property(x => x.ValorCreditoMensal)
             .HasColumnType("NUMERIC(15,2)");
 
+        /*
         builder.HasOne(c => c.Paciente)
                 .WithMany(p => p.Contratos)
                 .HasForeignKey(c => c.PacienteId);
@@ -81,11 +83,13 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
         builder.HasOne(c => c.Vinculo)
                 .WithMany(v => v.Contratos)
                 .HasForeignKey(c => c.VinculoId);
-
+        */
+        /*
         builder.HasMany(c => c.Financeiros)
             .WithOne(f => f.Contrato)
             .HasForeignKey(f => f.ContratoId)
             .HasPrincipalKey(c => c.Id)
             .OnDelete(DeleteBehavior.NoAction);
+        */
     }
 }

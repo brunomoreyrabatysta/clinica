@@ -2,6 +2,6 @@
 
 public enum ETipoCredito
 {
-    Credito = 'C',
-    Debito = 'D'
+    Credito = 1,
+    Debito = 2
 }

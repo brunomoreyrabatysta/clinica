@@ -52,8 +52,7 @@ public class ResponsavelMapping : IEntityTypeConfiguration<Responsavel>
             .HasColumnType("VARCHAR")
             .HasMaxLength(100);
         builder.Property(x => x.Sexo)
-            .HasColumnType("CHAR")
-            .HasMaxLength(1);
+            .HasColumnType("INT");
         builder.Property(x => x.DataNascimento)
             .IsRequired()
             .HasColumnType("DATE");
@@ -63,6 +62,9 @@ public class ResponsavelMapping : IEntityTypeConfiguration<Responsavel>
         builder.Property(x => x.Email)
             .HasColumnType("VARCHAR")
             .HasMaxLength(150);
+        builder.Property(x => x.Observacao)
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(8000);
 
         builder.HasOne(r => r.Cidade)
                 .WithMany(c => c.Responsaveis)

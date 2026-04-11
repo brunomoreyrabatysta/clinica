@@ -1,4 +1,7 @@
 ﻿using Clinica.Core.Enums;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinica.Core.Models;
 
@@ -6,16 +9,19 @@ public class Contrato
 {
     public long Id { get; set; }
     public long PacienteId { get; set; }
+    [NotMapped]
     public Paciente Paciente { get; set; } = new ();
     public long ResponsavelId { get; set; }
+    [NotMapped]
     public Responsavel Responsavel { get; set; } = new ();
     public int VinculoId { get; set; }
-    public Vinculo Vinculo { get; set; } = new ();
-    public ESituacao Situacao { get; set; }
-    public DateTime DataEmissao { get; set; }
-    public DateTime DataInicio { get; set; }
-    public DateTime DataTermino { get; set; }
-    public DateTime DataCancelamento { get; set; }
+    [NotMapped]
+    public Vinculo Vinculo { get; set; } = new ();    
+    public ESituacao Situacao { get; set; } = ESituacao.Aberto;    
+    public DateTime? DataEmissao { get; set; }
+    public DateTime? DataInicio { get; set; }
+    public DateTime? DataTermino { get; set; }
+    public DateTime? DataCancelamento { get; set; }
     public int Periodo { get; set; }
     public decimal ValorContrato { get; set; }
     public decimal ValorDesconto { get; set; }
@@ -23,7 +29,7 @@ public class Contrato
     public int NumeroParcela { get; set; }
     public decimal ValorEntrada { get; set; }
     public decimal ValorParcela { get; set; }
-    public DateTime DataEntrada { get; set; }
+    public DateTime? DataEntrada { get; set; }
     public int DiaVencimentoDemaisParcelas { get; set; }
     public decimal ValorProfissionalEquipe { get; set; }
     public decimal ValorProfissionalEquipe_Hora { get; set; }
@@ -31,5 +37,6 @@ public class Contrato
     public string? Observacao { get; set; }
     public decimal ValorCreditoMensal { get; set; }
 
+    [NotMapped]
     public List<Financeiro> Financeiros { get; set; } = new();
 }

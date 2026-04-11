@@ -1,4 +1,6 @@
 ﻿using Clinica.Api.Data;
+using Clinica.Core.Common.Extensions;
+using Clinica.Core.Enums;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
 using Clinica.Core.Requests.Contratos;
@@ -87,7 +89,9 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             await context.Contratos.AddAsync(contrato);
             await context.SaveChangesAsync();
 
-            return new Response<Contrato?>(contrato, 201, "Contrato criado com sucesso!");
+            var listarContratoPorIdRequest = new ListarContratoPorIdRequest { Id = contrato.Id };
+            var retorno = await ListarContratoPorIdAsync(listarContratoPorIdRequest);
+            return new Response<Contrato?>(retorno.Dados, 201, "Contrato criado com sucesso!");
         }
         catch (Exception ex)
         {
@@ -121,10 +125,42 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
     {
         try
         {
-            var contrato = await context
-                .Contratos
+            var contrato = await 
+                (from c in context.Contratos
+                 join p in context.Pacientes on c.PacienteId equals p.Id
+                 join r in context.Responsaveis on c.ResponsavelId equals r.Id
+                 join v in context.Vinculos on c.VinculoId equals v.Id
+                 where c.Id == request.Id
+                 select new Contrato
+                 {
+                     Id = c.Id,
+                     PacienteId = c.PacienteId,
+                     ResponsavelId = c.ResponsavelId,
+                     VinculoId = c.VinculoId,
+                     Situacao = c.Situacao,
+                     DataEmissao = c.DataEmissao,
+                     DataInicio = c.DataInicio,
+                     DataTermino = c.DataTermino,
+                     DataCancelamento = c.DataCancelamento,
+                     Periodo = c.Periodo,
+                     ValorContrato = c.ValorContrato,
+                     ValorDesconto = c.ValorDesconto,
+                     ValorContratoLiquido = c.ValorContratoLiquido,
+                     NumeroParcela = c.NumeroParcela,
+                     ValorEntrada = c.ValorEntrada,
+                     ValorParcela = c.ValorParcela,
+                     DataEntrada = c.DataEntrada,
+                     DiaVencimentoDemaisParcelas = c.DiaVencimentoDemaisParcelas,
+                     ValorProfissionalEquipe = c.ValorProfissionalEquipe,
+                     ValorProfissionalEquipe_Hora = c.ValorProfissionalEquipe_Hora,
+                     ValorTerapeutico = c.ValorTerapeutico,
+                     Observacao = c.Observacao,
+                     ValorCreditoMensal = c.ValorCreditoMensal,
+                     Paciente = p,
+                     Responsavel = r,
+                     Vinculo = v,
+                 })
                 .AsNoTracking()
-                .Where(x => x.Id == request.Id)
                 .FirstOrDefaultAsync();
 
             return contrato is null
@@ -141,8 +177,40 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
     {
         try
         {
-            var consulta = context
-                .Contratos
+            var consulta = 
+                (from c in context.Contratos
+                 join p in context.Pacientes on c.PacienteId equals p.Id
+                 join r in context.Responsaveis on c.ResponsavelId equals r.Id
+                 join v in context.Vinculos on c.VinculoId equals v.Id                 
+                 select new Contrato
+                 {
+                     Id = c.Id,
+                     PacienteId = c.PacienteId,
+                     ResponsavelId = c.ResponsavelId,
+                     VinculoId = c.VinculoId,
+                     Situacao = c.Situacao,
+                     DataEmissao = c.DataEmissao,
+                     DataInicio = c.DataInicio,
+                     DataTermino = c.DataTermino,
+                     DataCancelamento = c.DataCancelamento,
+                     Periodo = c.Periodo,
+                     ValorContrato = c.ValorContrato,
+                     ValorDesconto = c.ValorDesconto,
+                     ValorContratoLiquido = c.ValorContratoLiquido,
+                     NumeroParcela = c.NumeroParcela,
+                     ValorEntrada = c.ValorEntrada,
+                     ValorParcela = c.ValorParcela,
+                     DataEntrada = c.DataEntrada,
+                     DiaVencimentoDemaisParcelas = c.DiaVencimentoDemaisParcelas,
+                     ValorProfissionalEquipe = c.ValorProfissionalEquipe,
+                     ValorProfissionalEquipe_Hora = c.ValorProfissionalEquipe_Hora,
+                     ValorTerapeutico = c.ValorTerapeutico,
+                     Observacao = c.Observacao,
+                     ValorCreditoMensal = c.ValorCreditoMensal,
+                     Paciente = p,
+                     Responsavel = r,
+                     Vinculo = v,
+                 })
                 .AsNoTracking()
                 .OrderBy(x => x.DataEmissao);
 
