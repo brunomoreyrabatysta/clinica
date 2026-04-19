@@ -2,16 +2,64 @@
     <img src="imgs/IntegraVida_Mulheres.png" alt="IntegraVida - Mulheres" width="200" />
 </div>
 
-<MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
-    <MudNavLink Href="/unidadefederativa">Unidades Federativas</MudNavLink>
-    <MudNavLink Href="/cidade">Cidades</MudNavLink>
-    <MudNavLink Href="/vinculo">Vínculo</MudNavLink>
-    <MudNavLink Href="#">---------</MudNavLink>
-    <MudNavLink Href="/paciente">Pacientes</MudNavLink>
-    <MudNavLink Href="/responsavel">Responsável</MudNavLink>
-    <MudNavLink Href="#">---------</MudNavLink>
-    <MudNavLink Href="/contrato">Contrato</MudNavLink>
-    <MudNavLink Href="/financeiro">Financeiro</MudNavLink>
-    <MudNavLink Href="/sair">Sair</MudNavLink>
-</MudNavMenu>
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/unidadefederativa">
+                <span class="oi oi-plus" aria-hidden="true"></span> Unidades Federativas
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/cidade">
+                <span class="oi oi-plus" aria-hidden="true"></span> Cidades
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/vinculo">
+                <span class="oi oi-plus" aria-hidden="true"></span> Vínculos
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/contrato" @onclick="() => expandirSubMenu = !expandirSubMenu">
+                <span class="oi oi-graph" aria-hidden="true"></span> Contrato
+            </NavLink>
+            @if (expandirSubMenu)
+            {
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <NavLink class="expand-menu" href="/contrato">
+                            <span class="oi oi-bar-chart" aria-hidden="true"></span> Contrato
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="expand-menu" href="/financeiro">
+                            <span class="oi oi-pie-chart" aria-hidden="true"></span> Financeiro
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/sair">
+                <span class="oi oi-plus" aria-hidden="true"></span> Sair
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool expandirSubMenu;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
