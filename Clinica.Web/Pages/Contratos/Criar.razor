@@ -44,7 +44,9 @@
 
         <MudSelect T="Clinica.Core.Enums.ESituacao"
                    Label="Situação"
-                   @bind-Value="InputModel.Situacao"
+                   Immediate="true"
+                   @bind-Value="InputModel.Situacao"                   
+                   @bind-Value:after="AlterarSituacao"
                    Required="true">
             <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Aberto">Aberto</MudSelectItem>
             <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Fechado">Fechado</MudSelectItem>
@@ -73,11 +75,12 @@
 
         <MudDatePicker @bind-Date="InputModel.DataCancelamento"
                        Label="Data de cancelamento"
-                       Required="true"
+                       Disabled="@isNaoCancelado"
+                       ReadOnly="@isNaoCancelado"
                        For="@(() => InputModel.DataCancelamento)"
                        HelperText="Selecione a data de cancelamento" />
 
-        <MudNumericField Label="Períodos (meses)"
+        <MudNumericField Label="Período (meses)"
                          Min="1" Max="12"
                          HideSpinButtons="true"
                          Variant="Variant.Text"
@@ -118,41 +121,49 @@
                          Format="C"
                          T="decimal"
                          ReadOnly="true"
+                         Disabled="true"
                          @bind-Value="InputModel.ValorContratoLiquido"
                          For="@(() => InputModel.ValorContratoLiquido)" />
-
-        <MudNumericField Label="Número de parcdelas (financeiro)"
-                         Min="1" Max="12"
-                         HideSpinButtons="true"
-                         Variant="Variant.Text"
-                         Immediate="false"
-                         T="int"
-                         @bind-Value="InputModel.NumeroParcela"
-                         For="@(() => InputModel.NumeroParcela)" />
 
         <MudNumericField Label="Valor da entrada"
                          Min="0"
                          HideSpinButtons="true"
                          Variant="Variant.Text"
-                         Immediate="false"
+                         Immediate="true"
                          Format="C"
                          T="decimal"
+                         @onblur="VerificarEntrada"
                          @bind-Value="InputModel.ValorEntrada"
                          For="@(() => InputModel.ValorEntrada)" />
 
         <MudDatePicker @bind-Date="InputModel.DataEntrada"
                        Label="Data de entrada"
+                       Immediate="true"
                        Required="true"
+                       Disabled="@isNaoTemEntrada"
+                       ReadOnly="@isNaoTemEntrada"
                        For="@(() => InputModel.DataEntrada)"
                        HelperText="Selecione a data de entrada" />
+
+        <MudNumericField Label="Número de parcdelas (financeiro)"
+                         Min="0" Max="12"
+                         HideSpinButtons="true"
+                         Variant="Variant.Text"
+                         Immediate="true"
+                         T="int"
+                         @onblur="VerificarParcela"
+                         @bind-Value="InputModel.NumeroParcela"
+                         For="@(() => InputModel.NumeroParcela)" />
 
         <MudNumericField Label="Valor das parcelas"
                          Min="0"
                          HideSpinButtons="true"
                          Variant="Variant.Text"
-                         Immediate="false"
+                         Immediate="true"
                          Format="C"
                          T="decimal"
+                         Disabled="@isNaoTemParcela"
+                         ReadOnly="@isNaoTemParcela"
                          @bind-Value="InputModel.ValorParcela"
                          For="@(() => InputModel.ValorParcela)" />
 
@@ -160,8 +171,10 @@
                          Min="1" Max="31"
                          HideSpinButtons="true"
                          Variant="Variant.Text"
-                         Immediate="false"
+                         Immediate="true"
                          T="int"
+                         Disabled="@isNaoTemParcela"
+                         ReadOnly="@isNaoTemParcela"
                          @bind-Value="InputModel.DiaVencimentoDemaisParcelas"
                          For="@(() => InputModel.DiaVencimentoDemaisParcelas)" />
 

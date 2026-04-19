@@ -58,6 +58,8 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
 
     public async Task<Response<Contrato?>> CriarAsync(CriarContratoRequest request)
     {
+        var financeiroHandler = new FinanceiroHandler(context);
+        using var transaction = context.Database.BeginTransaction();
         try
         {
             var contrato = new Contrato
@@ -89,12 +91,23 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             await context.Contratos.AddAsync(contrato);
             await context.SaveChangesAsync();
 
-            var listarContratoPorIdRequest = new ListarContratoPorIdRequest { Id = contrato.Id };
+            var requestContrato = new ListarContratoPorIdRequest { Id = contrato.Id };
+
+            await financeiroHandler.GerarFinanceiroAsync(requestContrato);
+
+            await financeiroHandler.GerarCreditoAsync(requestContrato);
+
+            await transaction.CommitAsync();
+
+            var listarContratoPorIdRequest = new ListarContratoPorIdRequest { Id = contrato?.Id ?? 0 };
             var retorno = await ListarContratoPorIdAsync(listarContratoPorIdRequest);
+
             return new Response<Contrato?>(retorno.Dados, 201, "Contrato criado com sucesso!");
         }
         catch (Exception ex)
         {
+            await transaction.RollbackAsync();
+
             return new Response<Contrato?>(null, 500, "[CON001] Falha ao criar o contrato! " + ex.Message);
         }
     }

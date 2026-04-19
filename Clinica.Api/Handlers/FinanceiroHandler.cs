@@ -1,6 +1,7 @@
 ﻿using Clinica.Api.Data;
 using Clinica.Core.Handlers;
 using Clinica.Core.Models;
+using Clinica.Core.Requests.Contratos;
 using Clinica.Core.Requests.Financeiros;
 using Clinica.Core.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,124 @@ public class FinanceiroHandler(AppDbContext context) : IFinanceiroHandler
         catch (Exception ex)
         {
             return new Response<Financeiro?>(null, 500, "[FIN001] Falha ao criar o financeiro! " + ex.Message);
+        }
+    }
+
+    public async Task<PaginacaoResponse<List<Financeiro>?>> GerarFinanceiroAsync(ListarContratoPorIdRequest request)
+    {
+        try
+        {
+            var contratoHandler = new ContratoHandler(context);
+            var result = await contratoHandler.ListarContratoPorIdAsync(request);
+
+            if (!result.Sucesso)
+                return new PaginacaoResponse<List<Financeiro>?>(null, 404, "[FIN014] Contrato não encontrado!");
+
+            var contrato = result.Dados;
+
+            if (contrato is null)
+                return new PaginacaoResponse<List<Financeiro>?>(null, 404, "[FIN009] Contrato não encontrado!");
+
+            var listaFinanceiro = new List<Financeiro>();
+            DateTime dataVencimento = contrato.DataInicio ?? DateTime.Now.Date;
+
+            if (contrato.ValorEntrada > 0)
+            {
+                dataVencimento = contrato.DataEntrada ?? DateTime.Now.Date;
+
+                var financeiroEntrada = new Financeiro
+                {
+                    ContratoId = contrato.Id,
+                    NumeroParcela = 0,
+                    Valor = contrato.ValorEntrada,
+                    DataEmissao = contrato.DataInicio,
+                    DataVencimento = dataVencimento,
+                    Situacao = Core.Enums.ESituacaoFinanceiro.Aberto,
+                    TipoFinanceiro = Core.Enums.ETipoFinanceiro.Mensalidade,
+                    TipoCredito = Core.Enums.ETipoCredito.Debito
+                };
+                listaFinanceiro.Add(financeiroEntrada);
+                await context.Financeiros.AddAsync(financeiroEntrada);
+                
+            }
+
+            for (var i = 1; i <= contrato.NumeroParcela; i++)
+            {
+                dataVencimento = dataVencimento.AddMonths(1);                
+                
+                dataVencimento = new DateTime(dataVencimento.Date.Year, dataVencimento.Date.Month, contrato.DiaVencimentoDemaisParcelas);
+
+                var financeiro = new Financeiro
+                {
+                    ContratoId = contrato.Id,
+                    NumeroParcela = i,
+                    Valor = contrato.ValorParcela,
+                    DataEmissao = contrato.DataInicio,
+                    DataVencimento = dataVencimento,
+                    Situacao = Core.Enums.ESituacaoFinanceiro.Aberto,
+                    TipoFinanceiro = Core.Enums.ETipoFinanceiro.Mensalidade,
+                    TipoCredito = Core.Enums.ETipoCredito.Debito
+                };
+                listaFinanceiro.Add(financeiro);
+                await context.Financeiros.AddAsync(financeiro);
+            }
+
+            await context.SaveChangesAsync();
+            return new PaginacaoResponse<List<Financeiro>?>(listaFinanceiro, mensagem: "Lista de financeiro gerada com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return new PaginacaoResponse<List<Financeiro>?>(null, 500, "[FIN011] Falha ao gerar o financeiro! " + ex.Message);
+        }
+    }
+
+    public async Task<PaginacaoResponse<List<Financeiro>?>> GerarCreditoAsync(ListarContratoPorIdRequest request)
+    {
+        try
+        {
+            var contratoHandler = new ContratoHandler(context);
+            var result = await contratoHandler.ListarContratoPorIdAsync(request);
+
+            if (!result.Sucesso)
+                return new PaginacaoResponse<List<Financeiro>?>(null, 404, "[FIN012] Contrato não encontrado!");
+
+            var contrato = result.Dados;
+
+            if (contrato is null)
+                return new PaginacaoResponse<List<Financeiro>?>(null, 404, "[FIN013] Contrato não encontrado!");
+
+            var listaFinanceiro = new List<Financeiro>();
+            DateTime dataVencimento = contrato.DataInicio ?? DateTime.Now.Date;
+            dataVencimento = new DateTime(dataVencimento.Date.Year, dataVencimento.Date.Month, 1);
+
+            if (contrato.ValorCreditoMensal > 0)
+            {
+                for (var i = 1; i <= contrato.Periodo; i++)
+                {
+                    var financeiro = new Financeiro
+                    {
+                        ContratoId = contrato.Id,
+                        NumeroParcela = i,
+                        Valor = contrato.ValorCreditoMensal,
+                        DataEmissao = contrato.DataInicio,
+                        DataVencimento = dataVencimento,
+                        Situacao = Core.Enums.ESituacaoFinanceiro.Aberto,
+                        TipoFinanceiro = Core.Enums.ETipoFinanceiro.Avulso,
+                        TipoCredito = Core.Enums.ETipoCredito.Credito
+                    };
+                    listaFinanceiro.Add(financeiro);
+                    await context.Financeiros.AddAsync(financeiro);
+
+                    dataVencimento = dataVencimento.AddMonths(1);
+                }
+            }            
+
+            await context.SaveChangesAsync();
+            return new PaginacaoResponse<List<Financeiro>?>(listaFinanceiro, mensagem: "Lista de crtédito gerada com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return new PaginacaoResponse<List<Financeiro>?>(null, 500, "[FIN013] Falha ao gerar crédito do financeiro! " + ex.Message);
         }
     }
 
