@@ -216,7 +216,11 @@ public partial class CriarContratoPage : ComponentBase
             NumeroParcela = 0,
             ValorProfissionalEquipe = 150,
             ValorProfissionalEquipe_Hora = 50,
-            ValorTerapeutico = 100
+            ValorTerapeutico = 100,
+            ValorDiaria = 120,
+            PercentualMora = 1,
+            PercentualJuros = 2,
+            PercentualMultaContratual = 25
         };
 
         isNaoCancelado = true;

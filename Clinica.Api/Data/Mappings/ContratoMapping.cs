@@ -70,6 +70,14 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
             .HasMaxLength(8000);
         builder.Property(x => x.ValorCreditoMensal)
             .HasColumnType("NUMERIC(15,2)");
+        builder.Property(x => x.ValorDiaria)
+            .HasColumnType("NUMERIC(15,2)");
+        builder.Property(x => x.PercentualMora)
+            .HasColumnType("NUMERIC(7,4)");
+        builder.Property(x => x.PercentualJuros)
+            .HasColumnType("NUMERIC(7,4)");
+        builder.Property(x => x.PercentualMultaContratual)
+            .HasColumnType("NUMERIC(7,4)");
 
         /*
         builder.HasOne(c => c.Paciente)

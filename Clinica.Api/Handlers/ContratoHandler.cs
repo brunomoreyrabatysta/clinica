@@ -44,6 +44,10 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
             contrato.ValorTerapeutico = request.ValorTerapeutico;
             contrato.Observacao = request.Observacao;
             contrato.ValorCreditoMensal = request.ValorCreditoMensal;
+            contrato.ValorDiaria = request.ValorDiaria;
+            contrato.PercentualMora = request.PercentualMora;
+            contrato.PercentualJuros = request.PercentualJuros;
+            contrato.PercentualMultaContratual = request.PercentualMultaContratual;
 
             context.Contratos.Update(contrato);
             await context.SaveChangesAsync();
@@ -85,7 +89,11 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                 ValorProfissionalEquipe_Hora = request.ValorProfissionalEquipe_Hora,
                 ValorTerapeutico = request.ValorTerapeutico,
                 Observacao = request.Observacao,
-                ValorCreditoMensal = request.ValorCreditoMensal
+                ValorCreditoMensal = request.ValorCreditoMensal,
+                ValorDiaria = request.ValorDiaria,
+                PercentualMora = request.PercentualMora,
+                PercentualJuros = request.PercentualJuros,
+                PercentualMultaContratual = request.PercentualMultaContratual,
             };
 
             await context.Contratos.AddAsync(contrato);
@@ -169,6 +177,10 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                      ValorTerapeutico = c.ValorTerapeutico,
                      Observacao = c.Observacao,
                      ValorCreditoMensal = c.ValorCreditoMensal,
+                     ValorDiaria = c.ValorDiaria,
+                     PercentualMora = c.PercentualMora,
+                     PercentualJuros = c.PercentualJuros,
+                     PercentualMultaContratual = c.PercentualMultaContratual,
                      Paciente = p,
                      Responsavel = r,
                      Vinculo = v,
@@ -220,6 +232,10 @@ public class ContratoHandler(AppDbContext context) : IContratoHandler
                      ValorTerapeutico = c.ValorTerapeutico,
                      Observacao = c.Observacao,
                      ValorCreditoMensal = c.ValorCreditoMensal,
+                     ValorDiaria = c.ValorDiaria,
+                     PercentualMora = c.PercentualMora,
+                     PercentualJuros = c.PercentualJuros,
+                     PercentualMultaContratual = c.PercentualMultaContratual,
                      Paciente = p,
                      Responsavel = r,
                      Vinculo = v,

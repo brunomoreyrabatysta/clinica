@@ -104,6 +104,19 @@ public partial class EditarContratoPage : ComponentBase
         else
             InputModel.ValorContratoLiquido = InputModel.ValorContrato;
     }
+
+    protected Converter<decimal> _percentConverter = new Converter<decimal>
+    {
+        SetFunc = value => value.ToString("P2"),
+        GetFunc = text =>
+        {
+            if (decimal.TryParse(text.Replace("%", "").Trim(), out decimal value))
+            {
+                return value / 100m;
+            }
+            return 0;
+        }
+    };
     #endregion
 
     #region Private Methods
@@ -204,7 +217,11 @@ public partial class EditarContratoPage : ComponentBase
                     ValorProfissionalEquipe_Hora = result.Dados.ValorProfissionalEquipe_Hora,
                     ValorTerapeutico = result.Dados.ValorTerapeutico,
                     Observacao = result.Dados.Observacao,
-                    ValorCreditoMensal = result.Dados.ValorCreditoMensal
+                    ValorCreditoMensal = result.Dados.ValorCreditoMensal,
+                    ValorDiaria = result.Dados.ValorDiaria,
+                    PercentualMora = result.Dados.PercentualMora,
+                    PercentualJuros = result.Dados.PercentualJuros,
+                    PercentualMultaContratual = result.Dados.PercentualMultaContratual
                 };
             }
             else

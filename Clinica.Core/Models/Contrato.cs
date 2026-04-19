@@ -36,6 +36,10 @@ public class Contrato
     public decimal ValorTerapeutico { get; set; }    
     public string? Observacao { get; set; }
     public decimal ValorCreditoMensal { get; set; }
+    public decimal ValorDiaria { get; set; }
+    public decimal PercentualMora { get; set; }
+    public decimal PercentualJuros { get; set; }
+    public decimal PercentualMultaContratual { get; set; }
 
     [NotMapped]
     public List<Financeiro> Financeiros { get; set; } = new();

@@ -62,4 +62,16 @@ public class CriarContratoRequest : BaseRequest
 
     [Required(ErrorMessage = "O valor de crédito mensal não foi preenchido!")]
     public decimal ValorCreditoMensal { get; set; }
+
+    [Required(ErrorMessage = "O valor da diária não foi preenchido!")]
+    public decimal ValorDiaria { get; set; }
+
+    [Required(ErrorMessage = "O percentual da mora referente ao atraso não foi preenchido!")]    
+    public decimal PercentualMora { get; set; }
+
+    [Required(ErrorMessage = "O percentual do juros  referente ao atraso não foi preenchido!")]
+    public decimal PercentualJuros { get; set; }
+
+    [Required(ErrorMessage = "O percentual da multa referente ao descumprimento do contrato não foi preenchido!")]
+    public decimal PercentualMultaContratual { get; set; }
 }
