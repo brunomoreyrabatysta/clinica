@@ -18,7 +18,10 @@ public class CidadeMapping : IEntityTypeConfiguration<Cidade>
         builder.Property(x => x.UnidadeFederativaId)
             .IsRequired()
             .HasColumnType("INT");
-        
+        builder.Property(x => x.Situacao)
+            .IsRequired()
+            .HasColumnType("INT");
+
         builder.HasMany(c => c.Pacientes)
             .WithOne(p => p.Cidade)
             .HasForeignKey(p => p.CidadeId)

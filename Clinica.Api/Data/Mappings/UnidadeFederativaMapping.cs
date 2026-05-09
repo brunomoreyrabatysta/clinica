@@ -19,7 +19,10 @@ public class UnidadeFederativaMapping : IEntityTypeConfiguration<UnidadeFederati
             .IsRequired()
             .HasColumnType("VARCHAR")
             .HasMaxLength(2);
-        
+        builder.Property(x => x.Situacao)
+            .IsRequired()
+            .HasColumnType("INT");
+
         builder.HasMany(uf => uf.Cidades)
             .WithOne(c => c.UnidadeFederativa)
             .HasForeignKey(c => c.UnidadeFederativaId)

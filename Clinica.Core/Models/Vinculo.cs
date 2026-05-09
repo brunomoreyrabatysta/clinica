@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica.Core.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,4 +13,6 @@ public class Vinculo
 
     [NotMapped]
     public List<Contrato> Contratos { get; set; } = new();
+
+    public ESituacao Situacao { get; set; } = ESituacao.Ativo;
 }

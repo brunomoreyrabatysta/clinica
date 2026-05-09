@@ -65,6 +65,9 @@ public class PacienteMapping : IEntityTypeConfiguration<Paciente>
         builder.Property(x => x.Observacao)
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
+        builder.Property(x => x.Situacao)
+            .IsRequired()
+            .HasColumnType("INT");
 
         builder.HasOne(p => p.Cidade)
                 .WithMany(c => c.Pacientes)

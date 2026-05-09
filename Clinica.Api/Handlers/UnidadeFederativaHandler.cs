@@ -22,6 +22,7 @@ public class UnidadeFederativaHandler(AppDbContext context) : IUnidadeFederativa
 
             unidadeFederativa.Nome = request.Nome;
             unidadeFederativa.Sigla = request.Sigla;
+            unidadeFederativa.Situacao = request.Situacao;
 
             context.UnidadesFederativa.Update(unidadeFederativa);
             await context.SaveChangesAsync();
@@ -41,7 +42,8 @@ public class UnidadeFederativaHandler(AppDbContext context) : IUnidadeFederativa
             var unidadeFederativa = new UnidadeFederativa
             {
                 Nome = request.Nome,
-                Sigla = request.Sigla
+                Sigla = request.Sigla,
+                Situacao = request.Situacao
             };
 
             await context.UnidadesFederativa.AddAsync(unidadeFederativa);

@@ -21,7 +21,8 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
                 return new Response<Cidade?>(null, 404, "[CID002] Cidade não encontrada!");
 
             cidade.Nome = request.Nome;
-            cidade.UnidadeFederativaId= request.UnidadeFederativaId;
+            cidade.UnidadeFederativaId = request.UnidadeFederativaId;
+            cidade.Situacao = request.Situacao;
 
             context.Cidades.Update(cidade);
             await context.SaveChangesAsync();
@@ -41,7 +42,8 @@ public class CidadeHandler(AppDbContext context) : ICidadeHandler
             var cidade = new Cidade
             {
                 Nome = request.Nome,
-                UnidadeFederativaId = request.UnidadeFederativaId
+                UnidadeFederativaId = request.UnidadeFederativaId,
+                Situacao = request.Situacao
             };
 
             await context.Cidades.AddAsync(cidade);

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Clinica.Core.Requests.UnidadesFederativas;
 
@@ -12,4 +13,6 @@ public class AlterarUnidadeFederativaRequest : BaseRequest
 
     [Required(ErrorMessage = "A sigla não foi preenchida!")]
     public string Sigla { get; set; } = string.Empty;
+
+    public ESituacao Situacao { get; set; }
 }

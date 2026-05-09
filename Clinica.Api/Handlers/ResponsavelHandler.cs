@@ -38,6 +38,7 @@ public class ResponsavelHandler(AppDbContext context) : IResponsavelHandler
             responsavel.NumeroTelefone = request.NumeroTelefone;
             responsavel.Email = request.Email;
             responsavel.Observacao = request.Observacao;
+            responsavel.Situacao = request.Situacao;
 
             context.Responsaveis.Update(responsavel);
             await context.SaveChangesAsync();
@@ -73,7 +74,8 @@ public class ResponsavelHandler(AppDbContext context) : IResponsavelHandler
                 DataNascimento = request.DataNascimento,
                 NumeroTelefone = request.NumeroTelefone,
                 Email = request.Email,
-                Observacao = request.Observacao
+                Observacao = request.Observacao,
+                Situacao = request.Situacao
             };
 
             await context.Responsaveis.AddAsync(responsavel);

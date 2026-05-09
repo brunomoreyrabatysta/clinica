@@ -15,6 +15,9 @@ public class VinculoMapping : IEntityTypeConfiguration<Vinculo>
             .IsRequired()
             .HasColumnType("VARCHAR")
             .HasMaxLength(300);
+        builder.Property(x => x.Situacao)
+            .IsRequired()
+            .HasColumnType("INT");
 
         /*
          * builder.HasMany(v => v.Contratos)

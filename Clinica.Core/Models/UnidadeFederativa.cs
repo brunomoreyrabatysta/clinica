@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinica.Core.Models;
 
@@ -13,4 +14,6 @@ public class UnidadeFederativa
 
     [NotMapped]
     public ICollection<Profissional> Profissionais { get; } = new List<Profissional>();
+
+    public ESituacao Situacao { get; set; } = ESituacao.Ativo;
 }

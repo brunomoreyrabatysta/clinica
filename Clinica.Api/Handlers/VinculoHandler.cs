@@ -21,6 +21,7 @@ public class VinculoHandler(AppDbContext context) : IVinculoHandler
                 return new Response<Vinculo?>(null, 404, "[VIC002] Vincúlo não encontrado!");
 
             vinculo.Nome = request.Nome;
+            vinculo.Situacao = request.Situacao;
 
 
             context.Vinculos.Update(vinculo);
@@ -40,7 +41,8 @@ public class VinculoHandler(AppDbContext context) : IVinculoHandler
         {
             var vinculo = new Vinculo
             {
-                Nome = request.Nome
+                Nome = request.Nome,
+                Situacao = request.Situacao
             };
 
             await context.Vinculos.AddAsync(vinculo);

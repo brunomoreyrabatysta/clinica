@@ -65,6 +65,9 @@ public class ResponsavelMapping : IEntityTypeConfiguration<Responsavel>
         builder.Property(x => x.Observacao)
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
+        builder.Property(x => x.Situacao)
+            .IsRequired()
+            .HasColumnType("INT");
 
         builder.HasOne(r => r.Cidade)
                 .WithMany(c => c.Responsaveis)

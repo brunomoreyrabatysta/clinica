@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Clinica.Core.Models;
 
@@ -14,4 +15,6 @@ public class Cidade
     public ICollection<Paciente> Pacientes { get; } = new List<Paciente>();
     [NotMapped]
     public ICollection<Responsavel> Responsaveis { get; } = new List<Responsavel>();
+
+    public ESituacao Situacao { get; set; } = ESituacao.Ativo;
 }

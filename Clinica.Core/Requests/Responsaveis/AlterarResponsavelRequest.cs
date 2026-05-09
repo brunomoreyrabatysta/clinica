@@ -33,4 +33,6 @@ public class AlterarResponsavelRequest :BaseRequest
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
     public string? Observacao { get; set; }
+
+    public ESituacao Situacao { get; set; }
 }

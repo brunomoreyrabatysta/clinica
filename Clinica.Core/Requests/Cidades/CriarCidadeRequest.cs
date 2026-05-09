@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Clinica.Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Clinica.Core.Requests.Cidades;
 
@@ -9,4 +10,6 @@ public class CriarCidadeRequest : BaseRequest
 
     [Required(ErrorMessage = "A unidade federativa não foi preenchida!")]
     public long UnidadeFederativaId { get; set; }
+
+    public ESituacao Situacao { get; set; }
 }

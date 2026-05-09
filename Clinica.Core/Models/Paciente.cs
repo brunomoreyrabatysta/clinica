@@ -29,4 +29,6 @@ public class Paciente
 
     [NotMapped]
     public List<Contrato> Contratos { get; set; } = new();
+
+    public ESituacao Situacao { get; set; } = ESituacao.Ativo;
 }
