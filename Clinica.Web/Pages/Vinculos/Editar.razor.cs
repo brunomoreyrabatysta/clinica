@@ -89,7 +89,8 @@ public partial class EditarVinculoPage : ComponentBase
                 InputModel = new AlterarVinculoRequest
                 {
                     Id = result.Dados.Id,
-                    Nome = result.Dados.Nome
+                    Nome = result.Dados.Nome,
+                    Situacao = result.Dados.Situacao
                 };
             }
             else

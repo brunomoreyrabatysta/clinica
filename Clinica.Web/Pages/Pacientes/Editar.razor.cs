@@ -132,7 +132,8 @@ public partial class EditarPacientePage : ComponentBase
                     DataNascimento = result.Dados.DataNascimento,
                     NumeroTelefone = result.Dados.NumeroTelefone,
                     Email = result.Dados.Email,
-                    Observacao = result.Dados.Observacao
+                    Observacao = result.Dados.Observacao,
+                    Situacao = result.Dados.Situacao
                 };
             }
             else

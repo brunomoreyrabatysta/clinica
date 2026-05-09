@@ -13,6 +13,15 @@
                       @bind-Value="InputModel.Nome"
                       For="@(() => InputModel.Nome)" />
 
+        <MudSelect T="Clinica.Core.Enums.ESituacao"
+                   Label="Situação"
+                   Immediate="true"
+                   @bind-Value="InputModel.Situacao"
+                   Required="true">
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Ativo">Ativo</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
+        </MudSelect>
+
         <MudButton ButtonType="ButtonType.Submit"
                    Variant="Variant.Filled"
                    Color="Color.Primary"

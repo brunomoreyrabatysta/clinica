@@ -110,6 +110,14 @@ else
                           @bind-Value="InputModel.Observacao"
                           For="@(() => InputModel.Observacao)" />
 
+            <MudSelect T="Clinica.Core.Enums.ESituacao"
+                       Label="Situação"
+                       Immediate="true"
+                       @bind-Value="InputModel.Situacao"
+                       Required="true">
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Ativo">Ativo</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
+            </MudSelect>
 
             <div class="d-flex mt-8">
                 @if (IsBusy)

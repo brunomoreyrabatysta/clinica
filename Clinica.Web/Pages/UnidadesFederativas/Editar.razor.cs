@@ -47,7 +47,8 @@ public partial class EditarUnidadeFederativaPage : ComponentBase
                 {
                     Id = result.Dados.Id,
                     Nome = result.Dados.Nome,
-                    Sigla = result.Dados.Sigla
+                    Sigla = result.Dados.Sigla,
+                    Situacao = result.Dados.Situacao
                 };
             }
             else

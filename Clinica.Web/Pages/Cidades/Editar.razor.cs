@@ -116,7 +116,8 @@ public partial class EditarCidadePage : ComponentBase
                 {
                     Id = result.Dados.Id,
                     Nome = result.Dados.Nome,
-                    UnidadeFederativaId = result.Dados.UnidadeFederativaId
+                    UnidadeFederativaId = result.Dados.UnidadeFederativaId,
+                    Situacao = result.Dados.Situacao
                 };
             }
             else
