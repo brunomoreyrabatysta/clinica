@@ -10,4 +10,7 @@ public class UnidadeFederativa
 
     [NotMapped]
     public ICollection<Cidade> Cidades { get; } = new List<Cidade>();
+
+    [NotMapped]
+    public ICollection<Profissional> Profissionais { get; } = new List<Profissional>();
 }

@@ -19,7 +19,7 @@ public class CriarContratoRequest : BaseRequest
     public Vinculo Vinculo { get; set; } = new();
 
     [Required(ErrorMessage = "A situação não foi preenchida!")]
-    public ESituacao Situacao { get; set; }
+    public ESituacaoContrato Situacao { get; set; }
 
     [Required(ErrorMessage = "A data de emissão não foi preenchida!")]
     public DateTime? DataEmissao { get; set; }

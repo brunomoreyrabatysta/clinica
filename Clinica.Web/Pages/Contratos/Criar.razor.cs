@@ -109,7 +109,7 @@ public partial class CriarContratoPage : ComponentBase
 
     protected void AlterarSituacao()
     {
-        isNaoCancelado = InputModel.Situacao != ESituacao.Cancelado;
+        isNaoCancelado = InputModel.Situacao != ESituacaoContrato.Cancelado;
 
 
         if (isNaoCancelado)
@@ -204,7 +204,7 @@ public partial class CriarContratoPage : ComponentBase
             PacienteId = Pacientes.FirstOrDefault()?.Id ?? 0,
             ResponsavelId = Responsaveis.FirstOrDefault()?.Id ?? 0,
             VinculoId = Vinculos.FirstOrDefault()?.Id ?? 0,
-            Situacao = ESituacao.Aberto,
+            Situacao = ESituacaoContrato.Aberto,
             DataEmissao = DateTime.Now.Date,
             DataInicio = DateTime.Now.Date,
             DataTermino = DateTime.Now.Date.AddMonths(1),
@@ -278,13 +278,13 @@ public partial class CriarContratoPage : ComponentBase
             return false;
         }
 
-        if ((InputModel.Situacao == ESituacao.Cancelado) && (!InputModel.DataCancelamento.HasValue))
+        if ((InputModel.Situacao == ESituacaoContrato.Cancelado) && (!InputModel.DataCancelamento.HasValue))
         {
             Snackbar.Add("A data de cancelamento é obrigatória para contratos cancelados.", Severity.Warning);
             return false;
         }
 
-        if ((InputModel.Situacao != ESituacao.Cancelado) && (InputModel.DataCancelamento.HasValue))
+        if ((InputModel.Situacao != ESituacaoContrato.Cancelado) && (InputModel.DataCancelamento.HasValue))
         {
             Snackbar.Add("A data de cancelamento só pode ser preenchida para contratos cancelados.", Severity.Warning);
             return false;

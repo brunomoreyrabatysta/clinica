@@ -17,7 +17,7 @@ public class Contrato
     public int VinculoId { get; set; }
     [NotMapped]
     public Vinculo Vinculo { get; set; } = new ();    
-    public ESituacao Situacao { get; set; } = ESituacao.Aberto;    
+    public ESituacaoContrato Situacao { get; set; } = ESituacaoContrato.Aberto;    
     public DateTime? DataEmissao { get; set; }
     public DateTime? DataInicio { get; set; }
     public DateTime? DataTermino { get; set; }

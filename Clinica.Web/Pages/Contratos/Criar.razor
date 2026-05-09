@@ -42,16 +42,16 @@
             }
         </MudSelect>
 
-        <MudSelect T="Clinica.Core.Enums.ESituacao"
+        <MudSelect T="Clinica.Core.Enums.ESituacaoContrato"
                    Label="Situação"
                    Immediate="true"
                    @bind-Value="InputModel.Situacao"                   
                    @bind-Value:after="AlterarSituacao"
                    Required="true">
-            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Aberto">Aberto</MudSelectItem>
-            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Fechado">Fechado</MudSelectItem>
-            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
-            <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Andamento">Andamento</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacaoContrato" Value="Clinica.Core.Enums.ESituacaoContrato.Aberto">Aberto</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacaoContrato" Value="Clinica.Core.Enums.ESituacaoContrato.Fechado">Fechado</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacaoContrato" Value="Clinica.Core.Enums.ESituacaoContrato.Cancelado">Cancelado</MudSelectItem>
+            <MudSelectItem T="Clinica.Core.Enums.ESituacaoContrato" Value="Clinica.Core.Enums.ESituacaoContrato.Andamento">Andamento</MudSelectItem>
         </MudSelect>
 
 

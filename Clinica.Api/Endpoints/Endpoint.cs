@@ -8,6 +8,7 @@ using Clinica.Api.Endpoints.Responsaveis;
 using Clinica.Api.Endpoints.Vinculos;
 using Clinica.Api.Endpoints.Contratos;
 using Clinica.Api.Endpoints.Financeiros;
+using Clinica.Api.Endpoints.Profissionais;
 
 namespace Clinica.Api.Endpoints;
 
@@ -99,6 +100,17 @@ public static class Endpoint
             .MapEndpoint<ListarFinanceiroPorIdEndpoint>()
             .MapEndpoint<ListarFinanceirosPorContratoIdEndpoint>()
             .MapEndpoint<ListarTodosFinanceirosEndpoint>();
+
+        endPoints
+            .MapGroup("v1/profissionais")
+            .WithTags("Profissionais")
+            .RequireAuthorization()
+            .MapEndpoint<CriarProfissionalEndpoint>()
+            .MapEndpoint<AlterarProfissionalEndpoint>()
+            .MapEndpoint<ExcluirProfissionalEndpoint>()
+            .MapEndpoint<ListarProfissionalPorIdEndpoint>()
+            .MapEndpoint<ListarProfissionaisPorNomeEndpoint>()
+            .MapEndpoint<ListarTodosProfissionaisEndpoint>();
 
         endPoints
             .MapGroup("v1/identity")
