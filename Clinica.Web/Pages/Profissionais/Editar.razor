@@ -1,0 +1,107 @@
+﻿@page "/profissional/editar/{id}"
+@inherits EditarProfissionalPage
+
+<MudText Typo="Typo.h3">Editar cidade</MudText>
+
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular Indeterminate="true"
+                             Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudTextField Label="Nome"
+                          HelperText="Campo obrigatório"
+                          MaxLength="300"
+                          Counter="300"
+                          @bind-Value="InputModel.Nome"
+                          For="@(() => InputModel.Nome)" />
+
+            <MudSelect T="Clinica.Core.Enums.ETipoProfissional"
+                       Label="Tipo de Profissional"
+                       Immediate="true"
+                       @bind-Value="InputModel.Tipo"
+                       Required="true">
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.EducadorFisico">Educador Físico</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Fisioterapeuta">Fisioterapeuta</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Fonoaudiologo">Fonoaudiólogo</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Nutricionista">Nutricionista</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Psicologo">Psicólogo</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Psiquiatra">Psiquiatra</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Terapeuta">Terapeuta</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ETipoProfissional" Value="Clinica.Core.Enums.ETipoProfissional.Outro">Outro</MudSelectItem>
+            </MudSelect>
+
+            <MudTextField Label="Número de Telefone"
+                          MaxLength="20"
+                          Counter="20"
+                          @bind-Value="InputModel.NumeroTelefone"
+                          For="@(() => InputModel.NumeroTelefone)" />
+
+            <MudTextField Label="E-mail"
+                          MaxLength="300"
+                          Counter="300"
+                          @bind-Value="InputModel.Email"
+                          For="@(() => InputModel.Email)" />
+
+            <MudTextField Label="CPF"
+                          HelperText="Campo obrigatório"
+                          MaxLength="14"
+                          Counter="14"
+                          @bind-Value="InputModel.CPF"
+                          For="@(() => InputModel.CPF)" />
+
+            <MudTextField Label="Número do registro"
+                          MaxLength="30"
+                          Counter="30"
+                          @bind-Value="InputModel.NumeroRegistro"
+                          For="@(() => InputModel.NumeroRegistro)" />
+
+            <MudSelect T="long?"
+                       Label="Unidade federativa (Conselho)"
+                       @bind-Value="InputModel.UnidadeFederativaId"
+                       Required="true"
+                       For="@(() => InputModel.UnidadeFederativaId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var uniFed in UnidadesFederativas)
+                {
+                    <MudSelectItem T="long" Value="@uniFed.Id">@uniFed.Nome - @uniFed.Sigla</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudTextField Label="Conselho"
+                          MaxLength="50"
+                          Counter="50"
+                          @bind-Value="InputModel.Conselho"
+                          For="@(() => InputModel.Conselho)" />
+
+            <MudSelect T="Clinica.Core.Enums.ESituacao"
+                       Label="Situação"
+                       Immediate="true"
+                       @bind-Value="InputModel.Situacao"
+                       Required="true">
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Ativo">Ativo</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ESituacao" Value="Clinica.Core.Enums.ESituacao.Cancelado">Cancelado</MudSelectItem>
+            </MudSelect>
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}

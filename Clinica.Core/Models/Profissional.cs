@@ -12,7 +12,7 @@ public class Profissional
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
     public string? NumeroRegistro { get; set; }
-    public int? UnidadeFederativaId { get; set; }
+    public long? UnidadeFederativaId { get; set; }
     
     [NotMapped]
     public UnidadeFederativa? UnidadeFederativa { get; set; }

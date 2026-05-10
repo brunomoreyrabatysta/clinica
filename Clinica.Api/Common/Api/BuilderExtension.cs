@@ -55,7 +55,7 @@ public static class BuilderExtension
                     .WithOrigins([
                         Configuracao.BackendUrl,
                         Configuracao.FrontendUrl
-                    ])                    
+                    ])
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
@@ -71,5 +71,6 @@ public static class BuilderExtension
         builder.Services.AddTransient<IVinculoHandler, VinculoHandler>();
         builder.Services.AddTransient<IContratoHandler, ContratoHandler>();
         builder.Services.AddTransient<IFinanceiroHandler, FinanceiroHandler>();
+        builder.Services.AddTransient<IProfissionalHandler, ProfissionalHandler>();
     }
 }

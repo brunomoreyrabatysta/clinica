@@ -14,7 +14,7 @@ public class CriarProfissionalRequest : BaseRequest
     public string? NumeroTelefone { get; set; }
     public string? Email { get; set; }
     public string? NumeroRegistro { get; set; }
-    public int? UnidadeFederativaId { get; set; }
+    public long? UnidadeFederativaId { get; set; }
     public UnidadeFederativa? UnidadeFederativa { get; set; }
     public string? Conselho { get; set; }
     public ESituacao Situacao { get; set; } = ESituacao.Ativo;

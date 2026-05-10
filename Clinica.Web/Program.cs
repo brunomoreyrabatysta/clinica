@@ -37,6 +37,7 @@ builder.Services.AddTransient<IResponsavelHandler, ResponsavelHandler>();
 builder.Services.AddTransient<IVinculoHandler, VinculoHandler>();
 builder.Services.AddTransient<IContratoHandler, ContratoHandler>();
 builder.Services.AddTransient<IFinanceiroHandler, FinanceiroHandler>();
+builder.Services.AddTransient<IProfissionalHandler, ProfissionalHandler>();
 
 builder.Services.AddLocalization();
 CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
