@@ -17,7 +17,7 @@ public class FinanceiroMapping : IEntityTypeConfiguration<Financeiro>
         builder.Property(x => x.DataEmissao)
             .IsRequired()
             .HasColumnType("DATE");
-        builder.Property(x => x.DataVencimento)            
+        builder.Property(x => x.DataVencimento)
             .HasColumnType("DATE");
         builder.Property(x => x.DataPagamento)
             .HasColumnType("DATE");
@@ -37,12 +37,12 @@ public class FinanceiroMapping : IEntityTypeConfiguration<Financeiro>
         builder.Property(x => x.Situacao)
             .IsRequired()
             .HasColumnType("INT");
-        builder.Property(x => x.NumeroParcela)            
+        builder.Property(x => x.NumeroParcela)
             .HasColumnType("INT");
         builder.Property(x => x.TipoFinanceiro)
             .IsRequired()
             .HasColumnType("INT");
-        builder.Property(x => x.Observacao)            
+        builder.Property(x => x.Observacao)
             .HasColumnType("VARCHAR")
             .HasMaxLength(8000);
         builder.Property(x => x.TipoCredito)

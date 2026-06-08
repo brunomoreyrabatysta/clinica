@@ -28,6 +28,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
     public DbSet<Contrato> Contratos { get; set; } = null!;
     public DbSet<Financeiro> Financeiros { get; set; } = null!;
     public DbSet<Profissional> Profissionais { get; set; } = null!;
+    public DbSet<Prontuario> Prontuarios { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -72,5 +72,6 @@ public static class BuilderExtension
         builder.Services.AddTransient<IContratoHandler, ContratoHandler>();
         builder.Services.AddTransient<IFinanceiroHandler, FinanceiroHandler>();
         builder.Services.AddTransient<IProfissionalHandler, ProfissionalHandler>();
+        builder.Services.AddTransient<IProntuarioHandler, ProntuarioHandler>();
     }
 }

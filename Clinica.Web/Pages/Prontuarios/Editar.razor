@@ -1,0 +1,78 @@
+﻿@page "/prontuario/editar/{id}"
+@inherits EditarProntuarioPage
+
+<MudText Typo="Typo.h3">Editar prontuário</MudText>
+@if (IsBusy)
+{
+    <MudPaper Class="pa-8 mt-4">
+        <MudProgressCircular Indeterminate="true"
+                             Color="Color.Info" />
+    </MudPaper>
+}
+else
+{
+    <MudPaper Class="pa-8 mt-4">
+        <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+            <DataAnnotationsValidator />
+
+            <MudDatePicker @bind-Date="InputModel.DataProntuario"
+                           Label="Data do prontuário"
+                           Required="true"
+                           For="@(() => InputModel.DataProntuario)"
+                           HelperText="Selecione a data do prontuário" />
+
+            <MudSelect T="long"
+                       Label="Contrato"
+                       @bind-Value="InputModel.ContratoId"
+                       Required="true"
+                       For="@(() => InputModel.ContratoId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var contrato in Contratos)
+                {
+                    <MudSelectItem T="long" Value="@contrato.Id">@contrato.Paciente.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="long"
+                       Label="Profissional"
+                       @bind-Value="InputModel.ProfissionalId"
+                       Required="true"
+                       For="@(() => InputModel.ProfissionalId)"
+                       AnchorOrigin="Origin.BottomCenter">
+                @foreach (var profissional in Profissionais)
+                {
+                    <MudSelectItem T="long" Value="@profissional.Id">@profissional.Nome</MudSelectItem>
+                }
+            </MudSelect>
+
+            <MudSelect T="Clinica.Core.Enums.ECobranca"
+                       Label="Cobrança"
+                       @bind-Value="InputModel.Cobranca"
+                       Required="true"
+                       For="@(() => InputModel.Cobranca)"
+                       AnchorOrigin="Origin.BottomCenter">
+                <MudSelectItem T="Clinica.Core.Enums.ECobranca" Value="Clinica.Core.Enums.ECobranca.Sim">Sim</MudSelectItem>
+                <MudSelectItem T="Clinica.Core.Enums.ECobranca" Value="Clinica.Core.Enums.ECobranca.Nao">Não</MudSelectItem>
+            </MudSelect>
+
+            <MudTextField Label="Descrição"
+                          MaxLength="8000"
+                          Counter="300"
+                          @bind-Value="InputModel.Descricao"
+                          For="@(() => InputModel.Descricao)" />
+
+            <div class="d-flex mt-8">
+                @if (IsBusy)
+                {
+                    <MudProgressCircular Color="Color.Info" Indeterminate="true" />
+                }
+                else
+                {
+                    <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">
+                        Salvar
+                    </MudButton>
+                }
+            </div>
+        </EditForm>
+    </MudPaper>
+}

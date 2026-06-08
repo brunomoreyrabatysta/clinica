@@ -9,6 +9,7 @@ using Clinica.Api.Endpoints.Vinculos;
 using Clinica.Api.Endpoints.Contratos;
 using Clinica.Api.Endpoints.Financeiros;
 using Clinica.Api.Endpoints.Profissionais;
+using Clinica.Api.Endpoints.Prontuarios;
 
 namespace Clinica.Api.Endpoints;
 
@@ -111,6 +112,17 @@ public static class Endpoint
             .MapEndpoint<ListarProfissionalPorIdEndpoint>()
             .MapEndpoint<ListarProfissionaisPorNomeEndpoint>()
             .MapEndpoint<ListarTodosProfissionaisEndpoint>();
+
+        endPoints
+            .MapGroup("v1/prontuarios")
+            .WithTags("Prontuarios")
+            .RequireAuthorization()
+            .MapEndpoint<CriarProntuarioEndpoint>()
+            .MapEndpoint<AlterarProntuarioEndpoint>()
+            .MapEndpoint<ExcluirProntuarioEndpoint>()
+            .MapEndpoint<ListarProntuarioPorIdEndpoint>()
+            .MapEndpoint<ListarProntuariosPorContratoIdEndpoint>()
+            .MapEndpoint<ListarTodosProntuariosEndpoint>();
 
         endPoints
             .MapGroup("v1/identity")

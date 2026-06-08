@@ -1,6 +1,9 @@
-﻿namespace Clinica.Core.Requests.Pacientes;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Clinica.Core.Requests.Pacientes;
 
 public class ListarPacientePorIdRequest : BaseRequest
 {
+    [Required(ErrorMessage = "O código do paciente não foi preenchido!")]
     public long Id { get; set; }
 }

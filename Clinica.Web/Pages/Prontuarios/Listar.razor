@@ -1,0 +1,51 @@
+﻿@page "/prontuario"
+@inherits ListarProntuarioPage
+
+<MudText Typo="Typo.h3">Prontuários</MudText>
+
+<div class="d-flex justify-end">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               StartIcon="@Icons.Material.TwoTone.Add"
+               Href="/prontuario/adicionar">
+        NOVO PRONTUÁRIO
+    </MudButton>
+</div>
+
+<MudDataGrid class="mt-4"
+             Items="@prontuarios"
+             Filterable="true"
+             QuickFilter="Filter"
+             Hideable="true">
+    <ToolBarContent>
+        <MudTextField @bind-Value="SearchTerm"
+                      Placeholder="Filtrar..."
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      Immediate="true"
+                      IconSize="Size.Medium"
+                      Class="mt-0" />
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="x => x.Id" Title="#" />
+        <PropertyColumn Property="x => x.Contrato.Paciente.Nome" Title="Paciente" />
+        <PropertyColumn Property="x => x.DataProntuario" Title="Data do prontuário" />
+        <PropertyColumn Property="x => x.Profissional.Nome" Title="Profissional" />
+        <TemplateColumn Class="d-flex justify-end">
+            <CellTemplate>
+                <MudStack Row>
+                    <MudIconButton Icon="@Icons.Material.Filled.Edit"
+                                   Href="@($"/prontuario/editar/{context.Item.Id}")"
+                                   Color="Color.Primary">
+                    </MudIconButton>
+
+                    <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                   Color="Color.Error"
+                                   arial-label="Excluir"
+                                   OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Contrato.Paciente.Nome)">
+                    </MudIconButton>
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>

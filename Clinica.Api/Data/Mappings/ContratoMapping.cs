@@ -22,7 +22,7 @@ public class ContratoMapping : IEntityTypeConfiguration<Contrato>
         builder.Property(x => x.VinculoId)
             .IsRequired()
             .HasColumnType("INT");
-        builder.Property(x => x.Situacao)            
+        builder.Property(x => x.Situacao)
             .IsRequired()
             .HasColumnType("INT");
         builder.Property(x => x.DataEmissao)

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Clinica.Core.Requests.Financeiros;
+namespace Clinica.Core.Requests.Prontuarios;
 
-public class ListarFinanceirosPorContratoIdRequest : PaginacaoRequest
+public class ListarProntuariosPorContratoIdRequest : PaginacaoRequest
 {
     [Required(ErrorMessage = "O código do contrato não foi preenchido!")]
     public long ContratoId { get; set; }
